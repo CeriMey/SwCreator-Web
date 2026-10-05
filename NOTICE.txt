@@ -1,0 +1,14 @@
+This application includes IaAssistant, licensed from Ariya Consulting.
+Copyright (c) 2025-2026 Ariya Consulting. All rights reserved.
+IaAssistant may be used only as part of this application and may not be
+redistributed separately. Separately licensed components retain their
+respective license terms.
+
+End users may install and run IaAssistant only as part of SwCreator.
+No standalone extraction, reuse, modification, sublicensing or separate
+redistribution of IaAssistant is permitted by this distribution.
+
+Component licenses and notices: licenses/
+Compiler licenses: compiler/toolchain/licenses/
+WASI shim licenses: compiler/toolchain/wasi-shim/
+Windows SDK notices: compiler/toolchain/windows-sdk/SDK-LICENSES.txt

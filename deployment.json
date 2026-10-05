@@ -1,0 +1,217 @@
+{
+  "generatedAt": "2026-10-05T07:13:37.798240+00:00",
+  "swstack": {
+    "commit": "1779d227ea00854f19203c1c4e5001db8f2bc385",
+    "localChanges": true
+  },
+  "iaassistant": {
+    "commit": "8e4e930d077586606d7a234b9ab1c4a46dc9255c",
+    "localChanges": true
+  },
+  "files": {
+    ".nojekyll": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compiler/client.js": {
+      "bytes": 13020,
+      "sha256": "e302df4f43f97850101ed365d923443299102884e02ebaf500dcd347f9412c3d"
+    },
+    "compiler/run-worker.mjs": {
+      "bytes": 1060,
+      "sha256": "85d7b4d2f851ff12dfcf583595cff32e6d7a7705c88bd19ee73107a26f126458"
+    },
+    "compiler/runner.html": {
+      "bytes": 764,
+      "sha256": "7da0a40c7d32ff31027a89d25f770dffeaaff5ba69e5f49934d1972198566446"
+    },
+    "compiler/runner.mjs": {
+      "bytes": 1161,
+      "sha256": "ea059abdf82b1519262dac493d046534fc98db172a9dc2fa8b28527210625080"
+    },
+    "compiler/toolchain/clang.wasm": {
+      "bytes": 35658969,
+      "sha256": "d92ef06cdd3fea88acf384db15a6f2a344790c05bcba8e9f13f5b75b36ad4a99"
+    },
+    "compiler/toolchain/licenses/BINJI-LICENSE.txt": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "compiler/toolchain/licenses/LLVM-LICENSE.txt": {
+      "bytes": 15141,
+      "sha256": "8d85c1057d742e597985c7d4e6320b015a9139385cff4cbae06ffc0ebe89afee"
+    },
+    "compiler/toolchain/licenses/WASMBOLT-LICENSE.txt": {
+      "bytes": 1069,
+      "sha256": "dc1a8973adfebad020593ed6f0048174b255240626f12ef9d5cb0d9935a4455e"
+    },
+    "compiler/toolchain/lld.wasm": {
+      "bytes": 16171013,
+      "sha256": "34d39bc410c098e7e09933b61cc8e28699447af9a28abf4544d71b6e9cad1f9d"
+    },
+    "compiler/toolchain/manifest.json": {
+      "bytes": 3310,
+      "sha256": "aa9134e0952984c09a687bc3ee2842082a6ac27b4c241bf6eaebcf012855f2f2"
+    },
+    "compiler/toolchain/sysroot.tar": {
+      "bytes": 22751744,
+      "sha256": "c5a96e9969d59d1f89f160e299978a48f8b937541f6b4ead813fe352ea8d81de"
+    },
+    "compiler/toolchain/toolchain.lock.json": {
+      "bytes": 4448,
+      "sha256": "c9dc72572c55380f13216b687f9e86e0fb73a6afcd1e58d774b0763250a8694c"
+    },
+    "compiler/toolchain/wasi-shim/debug.js": {
+      "bytes": 414,
+      "sha256": "a91848ee180529e2a60c05dfb9584cad19cd4e1c6f391fdb76a938bcae4c0328"
+    },
+    "compiler/toolchain/wasi-shim/fd.js": {
+      "bytes": 1906,
+      "sha256": "9e82e1fc1bfd3e3573f64349dc42b4b624ed61d24e5c553f2bb4d041444f166c"
+    },
+    "compiler/toolchain/wasi-shim/fs_mem.js": {
+      "bytes": 12206,
+      "sha256": "85dbc9e0ee784d9ff8b55452644e00bf7058e32355aab974f8b71d7d85772324"
+    },
+    "compiler/toolchain/wasi-shim/fs_opfs.js": {
+      "bytes": 2280,
+      "sha256": "4b96aaeb5ac5986cf802cbf22b975c656682d22a38248160c96fc2ded5644869"
+    },
+    "compiler/toolchain/wasi-shim/index.js": {
+      "bytes": 316,
+      "sha256": "7e2fd52ee3f728bb0b1d6e449724e0f13e3d586bb25bde6e02a66366175b5605"
+    },
+    "compiler/toolchain/wasi-shim/LICENSE-APACHE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "compiler/toolchain/wasi-shim/LICENSE-MIT": {
+      "bytes": 1023,
+      "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    },
+    "compiler/toolchain/wasi-shim/package.json": {
+      "bytes": 18,
+      "sha256": "1239d4d885dcad42201a27ed9324f8f0f760b78700d8db9ced39a511cffe7eae"
+    },
+    "compiler/toolchain/wasi-shim/strace.js": {
+      "bytes": 318,
+      "sha256": "ece435d3784d928d02bff4d015b7cb686f8c06de8536ff9f8ebc38a8f403a3be"
+    },
+    "compiler/toolchain/wasi-shim/wasi.js": {
+      "bytes": 16429,
+      "sha256": "168eb977a826f75ab0c39f9322f78cc58dbd5b233019ad1d6a7e940af8a7c4aa"
+    },
+    "compiler/toolchain/wasi-shim/wasi_defs.js": {
+      "bytes": 9027,
+      "sha256": "0db0f42ba330749a7b05095ea1fd0ff63fd2b30e84cead30fe4c28359d15f194"
+    },
+    "compiler/toolchain/windows/binji-runtime.mjs": {
+      "bytes": 24574,
+      "sha256": "43d77ed8393d294696edd69a6c2dc0a1b28c3f98e39d596dbed9691bb75dc763"
+    },
+    "compiler/toolchain/windows/Compiler.data": {
+      "bytes": 15106600,
+      "sha256": "0ece75e783df546656a03cb83cc55c8bf84690c4d2530b446d5c261f107e84be"
+    },
+    "compiler/toolchain/windows/Compiler.mjs": {
+      "bytes": 577631,
+      "sha256": "ce781a25e957b70c63402dce79bbd1abb78a933b4544fcc645a4347df312e371"
+    },
+    "compiler/toolchain/windows/Compiler.wasm": {
+      "bytes": 89410263,
+      "sha256": "6ec69d28a63e03d0f6953357206cbba13da27af05e1db336b48808780e04ddd0"
+    },
+    "compiler/toolchain/windows/empty.tar": {
+      "bytes": 1024,
+      "sha256": "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+    },
+    "compiler/toolchain/windows/lld.wasm": {
+      "bytes": 19490124,
+      "sha256": "551401e62a77857156ff773b2d97adeefac964e7f9cf59fa8b9dc32e8b29342d"
+    },
+    "compiler/toolchain/windows/memfs.wasm": {
+      "bytes": 345442,
+      "sha256": "2c72ee42bd9430029dda8c6bafc9f37143f6fe88d5f1ea950a70259ab748bcfe"
+    },
+    "compiler/toolchain/windows-sdk/SDK-LICENSES.txt": {
+      "bytes": 50871,
+      "sha256": "c268a7b111ee49bb3f6dc7da97af303fb68c3dddb3c0c1cb5996e6297f32a443"
+    },
+    "compiler/toolchain/windows-sdk/sdk-manifest.json": {
+      "bytes": 7221,
+      "sha256": "4c2206fc54b2652f5dca87cef30538e3888e486376df8bfd6811617e6c4c4438"
+    },
+    "compiler/toolchain/windows-sdk/sdk.tar.gz": {
+      "bytes": 36129230,
+      "sha256": "d4ee5cf855a771776c45e7832be7e5651641c7a2364e886c123b487d5f15c7e8"
+    },
+    "compiler/toolchain.mjs": {
+      "bytes": 17675,
+      "sha256": "5cf2a3a62f7a4b9283cbbd89ca0b639fddd3841cae4759ec3b15762eb37b1920"
+    },
+    "compiler/worker.mjs": {
+      "bytes": 739,
+      "sha256": "aaf83c0eea967ddd452ffd56e4b2a0ed70468e13aa0b58926a30f1e55a658ea3"
+    },
+    "index.html": {
+      "bytes": 3466,
+      "sha256": "9ab000a1e19aa703285615a575668be7ecd8de40d110a0a548ff1a1e0be491c1"
+    },
+    "licenses/Emscripten-LICENSE.txt": {
+      "bytes": 5093,
+      "sha256": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86"
+    },
+    "licenses/IaAssistant-LICENSE.txt": {
+      "bytes": 8232,
+      "sha256": "782130118e3f60b1ee1a2e7b4a1f719756f06d50c665bfd6c82d5737ba7a8e9e"
+    },
+    "licenses/IaAssistant-NOTICE.txt": {
+      "bytes": 3360,
+      "sha256": "5addfd07e4fd6c7fab3a6d24e80cb503f201bbf6c668450c1d4d8eee21c72367"
+    },
+    "licenses/SwStack-LICENSE.txt": {
+      "bytes": 11558,
+      "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6"
+    },
+    "NOTICE.txt": {
+      "bytes": 733,
+      "sha256": "cdb1ec332680d954c936120ce756b5a8c68d95495167bc5cc2c45d99e1fd0f3c"
+    },
+    "runtime/index.html": {
+      "bytes": 2719,
+      "sha256": "e7c55aa8f5de683b1e0d67a3491a1884ac2a6733eedc819539117c8185e9b64a"
+    },
+    "runtime/sdk-manifest.json": {
+      "bytes": 1787,
+      "sha256": "0d7de457c47a7b6d8f95779541d434a126fcef368d99216630268bb5042615e5"
+    },
+    "runtime/sdk.tar.gz": {
+      "bytes": 10493156,
+      "sha256": "15a28525c06dba52eaf3554c9196a2335cfa20608789cad018e4a72dbb04dd04"
+    },
+    "runtime/SwCreatorWebRuntime.js": {
+      "bytes": 5420159,
+      "sha256": "73b08119517fc45b387daf5b5e8c926e4a6f0f004e24e55cd2ce9116e27898ff"
+    },
+    "runtime/SwCreatorWebRuntime.wasm": {
+      "bytes": 14049281,
+      "sha256": "53e52df2f10d1cb6f4f1f88048616bb2759001b4825bacd27f833bb323d09780"
+    },
+    "SwCreatorWeb.data": {
+      "bytes": 28837850,
+      "sha256": "9a2511addca9cb14087d5de15b55123be096ea2007c18d6939f6aeaab871068f"
+    },
+    "SwCreatorWeb.html": {
+      "bytes": 3466,
+      "sha256": "9ab000a1e19aa703285615a575668be7ecd8de40d110a0a548ff1a1e0be491c1"
+    },
+    "SwCreatorWeb.js": {
+      "bytes": 144914,
+      "sha256": "7eebb036b49fe8abddbd36a9f02eea7e087c43211086653c7a5e3fd2973381fa"
+    },
+    "SwCreatorWeb.wasm": {
+      "bytes": 5835949,
+      "sha256": "50db5f33bf80c1db57733adeb7da8e43be7a18313ece5f5c189ed0c93e5127cb"
+    }
+  }
+}

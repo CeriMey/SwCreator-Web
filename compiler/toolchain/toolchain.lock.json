@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "id": "swcreator-clang22-wasi-clang23-coff-v2",
+  "sources": {
+    "webCompiler": "https://github.com/live-codes/clang-wasm",
+    "nativeCompiler": "https://github.com/anutosh21/WasmBolt",
+    "windowsCompiler": "https://github.com/binji/wasm-clang/tree/648c4a89997a351eef75cdaec3ef5b89d4937dec",
+    "wasiShim": "https://github.com/bjorn3/browser_wasi_shim"
+  },
+  "assets": {
+    "native-driver": {
+      "url": "https://anutosh21.github.io/WasmBolt/Compiler.js",
+      "sha256": "f1de65da5c54ad9fc0820de54875f3b65cd3cf2c003cdd163a7f0455566ac1c6",
+      "output": "windows/Compiler.mjs"
+    },
+    "native-clang": {
+      "url": "https://anutosh21.github.io/WasmBolt/Compiler.wasm",
+      "sha256": "6ec69d28a63e03d0f6953357206cbba13da27af05e1db336b48808780e04ddd0",
+      "output": "windows/Compiler.wasm"
+    },
+    "native-data": {
+      "url": "https://anutosh21.github.io/WasmBolt/Compiler.data",
+      "sha256": "20afb2efda2134204a4ec069a2165aa600160597c88cf992c7768b502a637bde",
+      "output": "windows/Compiler.data"
+    },
+    "web-clang": {
+      "url": "https://seorii.page/wasm-idle/clang/bin/clang.wasm.gz",
+      "sha256": "8dc032057fbeb41e4a9986dfc54b2336c17532033dee172eb0095eba9c5fbe75",
+      "decodedSha256": "d92ef06cdd3fea88acf384db15a6f2a344790c05bcba8e9f13f5b75b36ad4a99",
+      "output": "clang.wasm",
+      "compression": "gzip"
+    },
+    "web-lld": {
+      "url": "https://seorii.page/wasm-idle/clang/bin/lld.wasm.gz",
+      "sha256": "495813efde8f354c38483749cdface7a7d9e23c8411da45a6f5f80030159eb11",
+      "decodedSha256": "34d39bc410c098e7e09933b61cc8e28699447af9a28abf4544d71b6e9cad1f9d",
+      "output": "lld.wasm",
+      "compression": "gzip"
+    },
+    "web-sysroot": {
+      "url": "https://raw.githubusercontent.com/live-codes/clang-wasm/main/dist/sysroot.tar.gz",
+      "sha256": "195e8083bace1baf86014f134a210db354cd77825988eaac7d262161cf496c4f",
+      "output": "sysroot.tar",
+      "compression": "gzip"
+    },
+    "windows-lld": {
+      "url": "https://raw.githubusercontent.com/binji/wasm-clang/648c4a89997a351eef75cdaec3ef5b89d4937dec/lld",
+      "sha256": "36419ed202011765222098d7701218378b67f634d50f0a4625059ae2c9860f48",
+      "output": "windows/lld.wasm",
+      "patch": {
+        "kind": "zero-malloc",
+        "functionIndex": 36956,
+        "importedFunctions": 25,
+        "originalBodySha256": "ecbce2cdf2bb8458a7b82cc61bd96908bf9e46117b01352ead539132c8063a7a",
+        "outputSha256": "551401e62a77857156ff773b2d97adeefac964e7f9cf59fa8b9dc32e8b29342d",
+        "reason": "The upstream BINJI_HACK maps zero-initialized memory with uninitialized malloc. COFF Writer assumes zeros and otherwise emits invalid PE headers. Restore the zero-initialization guarantee in the actual allocator.",
+        "source": "https://github.com/binji/llvm-project/blob/master/llvm/lib/Support/Unix/Memory.inc"
+      }
+    },
+    "windows-memfs": {
+      "url": "https://raw.githubusercontent.com/binji/wasm-clang/648c4a89997a351eef75cdaec3ef5b89d4937dec/memfs",
+      "sha256": "2c72ee42bd9430029dda8c6bafc9f37143f6fe88d5f1ea950a70259ab748bcfe",
+      "output": "windows/memfs.wasm"
+    },
+    "windows-runtime": {
+      "url": "https://raw.githubusercontent.com/binji/wasm-clang/648c4a89997a351eef75cdaec3ef5b89d4937dec/shared.js",
+      "sha256": "4de0be862bda1a7571c1f0632abe3c62c47a56e734cc6b703155805a4b160b1c",
+      "output": "windows/binji-runtime.mjs"
+    },
+    "wasmbolt-license": {
+      "url": "https://raw.githubusercontent.com/anutosh21/WasmBolt/main/LICENSE",
+      "sha256": "dc1a8973adfebad020593ed6f0048174b255240626f12ef9d5cb0d9935a4455e",
+      "output": "licenses/WASMBOLT-LICENSE.txt"
+    },
+    "llvm-license": {
+      "url": "https://raw.githubusercontent.com/llvm/llvm-project/llvmorg-22.1.8/LICENSE.TXT",
+      "sha256": "8d85c1057d742e597985c7d4e6320b015a9139385cff4cbae06ffc0ebe89afee",
+      "output": "licenses/LLVM-LICENSE.txt"
+    },
+    "binji-license": {
+      "url": "https://raw.githubusercontent.com/binji/wasm-clang/648c4a89997a351eef75cdaec3ef5b89d4937dec/LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "output": "licenses/BINJI-LICENSE.txt"
+    },
+    "wasi-shim": {
+      "url": "https://registry.npmjs.org/@bjorn3/browser_wasi_shim/-/browser_wasi_shim-0.4.2.tgz",
+      "sha256": "9c0281520d0e99f027ec7c1c79b4036c0f8168ed9bf98aba19db4737a1333782",
+      "output": "wasi-shim"
+    }
+  }
+}

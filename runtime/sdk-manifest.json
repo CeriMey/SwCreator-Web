@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "swstack-web",
+  "target": "wasm32-unknown-emscripten",
+  "entry": "creator_create_ui",
+  "archives": [
+    {
+      "path": "sdk.tar.gz",
+      "sha256": "15a28525c06dba52eaf3554c9196a2335cfa20608789cad018e4a72dbb04dd04"
+    }
+  ],
+  "runtime": {
+    "script": "SwCreatorWebRuntime.js",
+    "wasm": "SwCreatorWebRuntime.wasm",
+    "factory": "SwCreatorRuntime"
+  },
+  "compileArguments": [
+    "-mrelocation-model",
+    "pic",
+    "-pic-level",
+    "2",
+    "-mconstructor-aliases",
+    "-fexceptions",
+    "-fcxx-exceptions",
+    "-exception-model=wasm",
+    "-mllvm",
+    "-wasm-enable-eh",
+    "-mllvm",
+    "-wasm-use-legacy-eh",
+    "-target-feature",
+    "+mutable-globals",
+    "-target-feature",
+    "+exception-handling"
+  ],
+  "definitions": [
+    "SW_STATIC",
+    "SW_WEB_SINGLE_THREAD=1",
+    "__EMSCRIPTEN__=1"
+  ],
+  "includeDirs": [
+    "/emscripten/include/wasm32-emscripten/eh/c++/v1",
+    "/emscripten/include/wasm32-emscripten/c++/v1",
+    "/emscripten/include/c++/v1",
+    "/emscripten/clang/include",
+    "/emscripten/include/wasm32-emscripten",
+    "/emscripten/include",
+    "/emscripten/include/compat",
+    "/swstack/include/SwStack",
+    "/swstack/include/SwStack/core",
+    "/swstack/include/SwStack/core/runtime",
+    "/swstack/include/SwStack/core/object",
+    "/swstack/include/SwStack/core/gui",
+    "/swstack/include/SwStack/core/io",
+    "/swstack/include/SwStack/core/fs",
+    "/swstack/include/SwStack/core/platform",
+    "/swstack/include/SwStack/core/types",
+    "/swstack/include/SwStack/core/threeD"
+  ],
+  "linkArguments": [
+    "-shared",
+    "--export=creator_create_ui",
+    "--allow-undefined",
+    "--import-memory",
+    "--import-table"
+  ]
+}

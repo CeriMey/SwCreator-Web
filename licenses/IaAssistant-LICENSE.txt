@@ -1,0 +1,156 @@
+IaAssistant Commercial License
+Version 1.0
+
+Licensor: Ariya Consulting
+Copyright (c) 2025-2026 Ariya Consulting. All rights reserved.
+License identifier: LicenseRef-IaAssistant-Commercial
+
+1. Scope and commercial authorization
+
+This license governs the IaAssistant code, headers, examples, tools, build
+scripts and documentation supplied by Ariya Consulting (the Software), subject
+to the exclusions in section 8. It is a proprietary commercial license.
+
+A Licensee is the individual or legal entity identified in a written commercial
+agreement or license order accepted by both Ariya Consulting and that Licensee
+(the Order). An Order must identify the licensed Software versions, permitted
+applications, license duration, scope of use and applicable fees. Downloading,
+viewing or receiving this repository alone does not grant a commercial license.
+Rights under this license begin only when the Order takes effect and are subject
+to its payment terms. No automatic evaluation license is granted.
+
+An Order may expressly vary these terms in writing. Except for such express
+variations and mandatory law, these terms apply to the licensed Software.
+
+2. Permitted use and modification
+
+Within the scope and duration of the Order, Ariya Consulting grants the Licensee
+a non-exclusive, non-transferable license to:
+
+(a) install, reproduce internally, compile, test and use the Software;
+(b) inspect, correct, adapt and modify its source code for the Licensee's needs;
+(c) incorporate the Software, including permitted modifications, into the
+    Licensee's applications; and
+(d) distribute those applications in executable object-code form only, under
+    the conditions of section 3.
+
+Reasonable internal development, build and backup copies are permitted. Source
+access may be given to the Licensee's employees who need it for authorized work
+and are bound by confidentiality and use restrictions consistent with this
+license. Access by contractors, affiliates or other third parties requires
+prior written authorization from Ariya Consulting.
+
+3. Distribution only as part of an application
+
+A permitted application must provide its own end-user functionality and must
+not be a repackaging of IaAssistant as a library, toolkit or development service
+that enables third parties to incorporate IaAssistant into their own software.
+
+The Licensee may distribute the Software, whether modified or unmodified, only
+as compiled code incorporated into and supplied with such an application. A
+runtime DLL or shared library may be included only in that application's
+installation package, for use exclusively with that application; it must not be
+offered as a separate download, standalone component or reusable development
+library. Static linking into the application is also permitted.
+
+The distribution must not include IaAssistant source code, headers, source
+patches, static libraries, SDKs, or build or debug artifacts containing source
+code. End users receive permission only to install and run the Software as part
+of the application. They receive no right under this license to extract, reuse,
+modify, sublicense or redistribute IaAssistant separately.
+
+The Licensee must impose these limits in its end-user terms, preserve applicable
+copyright and third-party notices, and include the following notice in the
+application's legal notices:
+
+    This application includes IaAssistant, licensed from Ariya Consulting.
+    Copyright (c) 2025-2026 Ariya Consulting. All rights reserved.
+    IaAssistant may be used only as part of this application and may not be
+    redistributed separately. Separately licensed components retain their
+    respective license terms.
+
+No general right to sublicense the Software is granted. Only the end-user use
+permission expressly described above may be passed on with the application.
+
+4. Restrictions
+
+Except as expressly permitted by this license, the Order or mandatory law, the
+Licensee must not publish, disclose, distribute, sell, rent, lend, transfer or
+sublicense the Software, its source code, or modifications of the Software.
+In particular, the Licensee must not place them in a public repository, share
+them with another customer, or distribute them as a standalone library or SDK.
+
+The Licensee must not grant third parties rights to IaAssistant source code or
+standalone use through the license of its own application. Copyright and license
+notices must not be removed or misrepresented. No trademark or endorsement
+rights are granted except the right to reproduce required attribution notices.
+
+5. Ownership and confidentiality
+
+The Software is licensed, not sold. Ariya Consulting and the applicable rights
+holders retain their rights in the Software. This license does not transfer
+ownership of the Licensee's independently developed application or original
+modifications to Ariya Consulting. Modifying the Software does not remove the
+restrictions that apply to the underlying Software or its distribution.
+
+Non-public source code and other confidential material supplied by Ariya
+Consulting must be protected with reasonable care and used only as authorized.
+Confidentiality does not extend to information lawfully public without breach,
+independently developed, or lawfully received without a confidentiality duty.
+Disclosure required by law is permitted to the extent legally required.
+
+6. Duration and termination
+
+The license duration is specified in the Order. Ariya Consulting may terminate
+the license for a material breach that remains uncured 30 days after written
+notice specifying the breach, subject to mandatory law and the Order.
+
+On expiry or termination, the Licensee must stop using, modifying and newly
+distributing the Software, and delete its copies except any archival copies
+required by law. Such archival copies must not be used for development or
+operation. End-user permissions for applications lawfully distributed before
+expiry or termination continue for those copies, subject to their terms; this
+does not authorize new distributions, updates or new development by the Licensee.
+Ownership, confidentiality, accrued obligations and distribution restrictions
+survive termination to the extent applicable.
+
+7. Support, warranty and liability
+
+Support, maintenance, updates, service levels and any express warranties are
+provided only as specified in the Order. Subject to mandatory law and any
+express written commitments, the Software is supplied as is, without implied
+warranties of merchantability, fitness for a particular purpose or uninterrupted
+or error-free operation.
+
+To the extent permitted by applicable law, Ariya Consulting is not liable for
+indirect or consequential losses arising from use of the Software. Nothing in
+this license excludes liability or rights that cannot lawfully be excluded.
+Any additional liability arrangements must be stated in the Order.
+
+8. Separate licenses, existing rights and mandatory law
+
+SwStack and other separately licensed
+components are excluded from this proprietary grant and these restrictions.
+Their own licenses govern their use, modification and redistribution. The
+Licensee remains responsible for complying with those licenses when building
+and distributing its application, including any applicable source, notice or
+relinking requirements. AI provider runtimes, SDKs and services are governed by
+those providers' own terms and licenses, which the Licensee must obtain and
+observe, including any required attribution. This license does not grant
+AI service access, third-party
+codec patent rights, or other rights outside Ariya Consulting's authority to
+grant.
+
+Nothing in this license withdraws or restricts rights already lawfully granted
+under another license. It does not make lawfully public code confidential or
+create exclusive rights in code that Ariya Consulting does not control.
+
+Mandatory statutory rights, including any non-waivable rights concerning backup,
+observation, study, testing, interoperability or transfer, are unaffected.
+Applicable law, jurisdiction and customer-specific commercial details may be
+specified in the Order, subject to mandatory legal rules.
+
+9. Contact
+
+Commercial licensing requests: Ariya Consulting
+Contact: Eymeric O'Neill <eymeric.oneill@gmail.com>

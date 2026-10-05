@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Application preview</title>
+<style>
+    body { margin: 0; background: #131823; color: #edf2fa; font: 14px system-ui; }
+    header { display: flex; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid #30394c; }
+    button { color: inherit; background: #30394c; border: 0; border-radius: 4px; padding: 5px 12px; cursor: pointer; }
+    pre { padding: 14px; margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+</style>
+<header><span id="status">Application preview</span><button id="stop" disabled>Stop</button></header>
+<pre id="output"></pre>
+<script type="module" src="runner.mjs"></script>
+</html>
