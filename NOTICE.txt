@@ -4,7 +4,7 @@ IaAssistant may be used only as part of this application and may not be
 redistributed separately. Separately licensed components retain their
 respective license terms.
 
-End users may install and run IaAssistant only as part of SwCreator.
+End users may install and run IaAssistant only as part of Softi.
 No standalone extraction, reuse, modification, sublicensing or separate
 redistribution of IaAssistant is permitted by this distribution.
 

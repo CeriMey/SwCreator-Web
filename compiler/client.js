@@ -8,6 +8,7 @@
     let sequence = 0;
     let preview = null;
     let cancelPreviewWait = null;
+    let previewWorkbench = null;
 
     function event(text, busy, kind = 'status', details = {}) {
         // The shared build panel displays plain text, like a native compiler
@@ -181,11 +182,18 @@
         preview = null;
         const container = document.getElementById('swcreator-preview');
         if (container) container.hidden = true;
-        module.canvas?.focus();
+        if (previewWorkbench) {
+            const {element, inert, focus} = previewWorkbench;
+            previewWorkbench = null;
+            element.inert = inert;
+            if (focus?.isConnected && !inert) focus.focus();
+            else module.canvas?.focus();
+        } else module.canvas?.focus();
     };
 
     window.addEventListener('message', ({source, origin, data}) => {
         if (!preview || source !== preview.contentWindow || origin !== location.origin || !data) return;
+        if (data.type === 'swcreator:preview-closed') { module.swCreatorClosePreview(); return; }
         if (data.type === 'swcreator:preview-output') event(String(data.text), !!pending, 'output', {stream: data.stream, buildId: preview.swCreatorBuildId});
     });
 
@@ -194,12 +202,23 @@
         if (!artifact) throw new Error('No browser application was produced.');
         const container = document.getElementById('swcreator-preview') || document.body;
         module.swCreatorClosePreview();
+        const sideModule = result.profile === 'emscripten-side';
+        const core = sideModule && result.projectProfile === 'core';
+        const gui = sideModule && !core;
+        container.classList.toggle('swcreator-gui-preview', gui);
+        if (gui) {
+            const element = module.canvas?.closest('[role="application"]');
+            if (element) {
+                previewWorkbench = {element, inert:element.inert, focus:document.activeElement};
+                element.inert = true;
+            }
+        }
         preview = document.createElement('iframe');
-        preview.title = 'Application preview';
+        preview.title = core ? 'Core application runtime' : 'Application preview';
         preview.className = 'swcreator-preview-frame';
         preview.swCreatorBuildId = result.buildId;
         // Program execution occurs in a dedicated runtime; console programs use a stoppable worker.
-        preview.src = result.profile === 'emscripten-side'
+        preview.src = sideModule
             ? new URL('../runtime/index.html', scriptBase).href
             : new URL('runner.html', scriptBase).href;
         container.hidden = false;
@@ -219,11 +238,15 @@
             frame.addEventListener('error', onError);
         });
         container.appendChild(frame);
-        if (!await loaded || frame !== preview) return;
+        let ready;
+        try { ready = await loaded; }
+        catch (error) { if (frame === preview) module.swCreatorClosePreview(); throw error; }
+        if (!ready || frame !== preview) return;
+        if (gui) frame.focus();
         const bytes = new Uint8Array(artifact.bytes);
         const id = ++sequence;
         let started;
-        if (result.profile === 'emscripten-side') {
+        if (sideModule) {
             started = new Promise((resolve, reject) => {
                 const clear = () => {
                     clearTimeout(timeout);
@@ -244,10 +267,14 @@
                 window.addEventListener('message', listener);
             });
         }
-        frame.contentWindow.postMessage({type: 'swcreator:run', id, wasm: bytes.buffer,
+        frame.contentWindow.postMessage({type: 'swcreator:run', id, wasm: bytes.buffer, formSize:result.formSize,
+            projectProfile: result.projectProfile,
             name: artifact.path, wasiShim: new URL('toolchain/wasi-shim/index.js', scriptBase).href},
             location.origin, [bytes.buffer]);
-        if (started) await started;
+        if (started) {
+            try { await started; }
+            catch (error) { if (frame === preview) module.swCreatorClosePreview(); throw error; }
+        }
     };
 
     module.swCreatorCompile = async function (request) {

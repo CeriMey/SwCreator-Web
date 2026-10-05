@@ -6,7 +6,7 @@
   "archives": [
     {
       "path": "sdk.tar.gz",
-      "sha256": "15a28525c06dba52eaf3554c9196a2335cfa20608789cad018e4a72dbb04dd04"
+      "sha256": "d69a113a2c4f50d2a9db75fa9ef114f9cc3ac6d33d2ceec9849f844d906cb36b"
     }
   ],
   "runtime": {

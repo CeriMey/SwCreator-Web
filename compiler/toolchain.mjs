@@ -25,6 +25,45 @@ export function projectPath(value) {
     return parts.join('/');
 }
 
+// Recent Clang emits GNU DLL-export exclusions that the packaged older PE
+// linker rejects. Static executable links do not need those exclusions. Blank
+// only that directive, preserving the COFF section and relocation offsets.
+export function stripUnsupportedCoffExclusions(input) {
+    const bytes = new Uint8Array(input);
+    if (bytes.length < 20) return bytes;
+    const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+    const machine = view.getUint16(0, true);
+    let count = view.getUint16(2, true);
+    let sections;
+    if (machine === 0x8664) sections = 20 + view.getUint16(16, true);
+    else if (machine === 0 && count === 0xffff && bytes.length >= 56) {
+        const bigobjId = [0xc7,0xa1,0xba,0xd1,0xee,0xba,0xa9,0x4b,0xaf,0x20,0xfa,0xf6,0x6a,0xa4,0xdc,0xb8];
+        if (view.getUint16(4, true) < 2 || view.getUint16(6, true) !== 0x8664
+            || !bigobjId.every((byte, index) => bytes[12 + index] === byte)) return bytes;
+        count = view.getUint32(44, true);
+        sections = 56;
+    } else return bytes;
+    if (sections + count * 40 > bytes.length) throw new Error('Malformed COFF section table.');
+    const latin1 = new TextDecoder('latin1');
+    for (let index = 0; index < count; ++index) {
+        const section = sections + index * 40;
+        if (latin1.decode(bytes.subarray(section, section + 8)) !== '.drectve') continue;
+        const size = view.getUint32(section + 16, true);
+        const pointer = view.getUint32(section + 20, true);
+        if (pointer + size > bytes.length) throw new Error('Malformed COFF directive section.');
+        // Latin-1 decoding keeps one JS character per byte, including unrelated
+        // UTF-8 symbol names, so match offsets remain exact byte offsets.
+        const payload = latin1.decode(bytes.subarray(pointer, pointer + size));
+        const exclusions = /(?:^|[\s\0])("-exclude-symbols:[^"\0]*"|-exclude-symbols:[^\s\0"]+)/g;
+        for (const match of payload.matchAll(exclusions)) {
+            const directive = match[1];
+            const start = pointer + match.index + match[0].length - directive.length;
+            bytes.fill(32, start, start + directive.length);
+        }
+    }
+    return bytes;
+}
+
 export async function verifiedBytes(url, sha256) {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Unable to load ${url}: HTTP ${response.status}`);
@@ -164,7 +203,8 @@ export class BrowserToolchain {
 
     async compile(request) {
         await this.initialize();
-        const targetName = request.target === 'web' && request.profile === 'swstack' ? 'swstack' : request.target;
+        const sideModule = request.target === 'web' && (request.profile === 'swstack' || request.profile === 'core');
+        const targetName = sideModule ? 'swstack' : request.target;
         let target = this.manifest.targets[targetName];
         let sdkBase = this.manifestUrl;
         if (targetName === 'swstack') {
@@ -172,6 +212,12 @@ export class BrowserToolchain {
             const sdk = await this.sdkManifest(sdkBase,
                 'The SwStack browser SDK is missing. Package the preview runtime first.');
             target = {...target, ...sdk, kind: 'emscripten-side', triple: 'wasm32-unknown-emscripten'};
+            if (request.profile === 'core') {
+                // Core projects share the SDK and event scheduler, with their
+                // own entry point and no widget window.
+                target.linkArguments = (target.linkArguments || []).map(argument =>
+                    argument === '--export=creator_create_ui' ? '--export=creator_create_core' : argument);
+            }
         }
         if (target?.sdkManifest) {
             sdkBase = new URL(target.sdkManifest, this.manifestUrl);
@@ -296,7 +342,12 @@ export class BrowserToolchain {
         const flags = target.compileArguments || [];
         const includes = (target.includeDirs || []).flatMap(path => [nativeModule ? '-isystem' : '-internal-isystem', path]);
         const definitions = (target.definitions || []).map(value => `-D${value}`);
-        if (request.profile === 'swstack') definitions.push('-DSWCREATOR_PROJECT_RUNTIME=1');
+        const formDimension = (value, fallback) => Number.isInteger(value) && value > 0 && value <= 65536 ? value : fallback;
+        const formSize = {width: formDimension(request.formSize?.width, 640),
+            height: formDimension(request.formSize?.height, 420)};
+        if (request.profile === 'swstack') definitions.push('-DSWCREATOR_PROJECT_RUNTIME=1',
+            `-DSWCREATOR_FORM_WIDTH=${formSize.width}`, `-DSWCREATOR_FORM_HEIGHT=${formSize.height}`);
+        if (sideModule && request.profile === 'core') definitions.push('-DSWCREATOR_PROJECT_RUNTIME=1');
         for (let index = 0; index < sources.length; ++index) {
             const path = sources[index];
             this.emit({type: 'status', text: `Compiling ${path}…`});
@@ -307,7 +358,10 @@ export class BrowserToolchain {
                 '-I', '/project', ...includes, ...definitions, ...flags,
                 '-o', object, '-x', /\.c$/.test(path) ? 'c' : 'c++', `/project/${path}`,
             ]);
-            if (nativeModule && target.copyObjectToLinker) target.copyObjectToLinker(object, nativeModule.FS.readFile(object));
+            if (nativeModule && target.copyObjectToLinker) {
+                const bytes = nativeModule.FS.readFile(object);
+                target.copyObjectToLinker(object, target.kind === 'coff' ? stripUnsupportedCoffExclusions(bytes) : bytes);
+            }
             objects.push(object);
         }
         for (const source of target.runtimeSources || []) {
@@ -316,7 +370,10 @@ export class BrowserToolchain {
                 ...(nativeModule ? [target.compiler.driver || 'clang++', `--target=${target.triple}`, '-c'] : ['clang', '-cc1', '-triple', target.triple, '-emit-obj']), '-O1',
                 ...includes, ...definitions, ...flags, '-o', object, '-x', /\.(cpp|cc|cxx)$/.test(source) ? 'c++' : 'c', source,
             ]);
-            if (nativeModule && target.copyObjectToLinker) target.copyObjectToLinker(object, nativeModule.FS.readFile(object));
+            if (nativeModule && target.copyObjectToLinker) {
+                const bytes = nativeModule.FS.readFile(object);
+                target.copyObjectToLinker(object, target.kind === 'coff' ? stripUnsupportedCoffExclusions(bytes) : bytes);
+            }
             objects.push(object);
         }
         this.emit({type: 'status', text: 'Linking the application…'});
@@ -333,6 +390,7 @@ export class BrowserToolchain {
         if (!magic) throw new Error('The linker produced an invalid application.');
         return {
             exitCode: 0, output: output.join(''), profile: target.kind,
+            projectProfile: request.profile || 'console', formSize,
             artifacts: [{path: path.split('/').pop(), bytes, mime: windows ? 'application/vnd.microsoft.portable-executable' : 'application/wasm'}],
         };
     }

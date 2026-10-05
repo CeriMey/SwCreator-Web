@@ -6,7 +6,7 @@
   "archives": [
     {
       "path": "sdk.tar.gz",
-      "sha256": "d4ee5cf855a771776c45e7832be7e5651641c7a2364e886c123b487d5f15c7e8"
+      "sha256": "f69a40a6b6ca9c9ec8d54d5a04180ba9f6a91ff7edd3a2928208ee1db6f0d5b1"
     }
   ],
   "licenseFile": "SDK-LICENSES.txt",
@@ -149,6 +149,57 @@
       "runtimeSources": [
         "/windows-sdk/creator_main.cpp"
       ]
+    },
+    "core": {
+      "linkArguments": [
+        "/windows-sdk/swstack/lib/libSwCore.a",
+        "/windows-sdk/swstack/lib/libSwMiniz.a",
+        "/windows-sdk/swstack/lib/libSwMlKem.a",
+        "/machine:x64",
+        "/subsystem:console",
+        "/entry:mainCRTStartup",
+        "/nodefaultlib",
+        "/lldmingw",
+        "/alternatename:__guard_eh_cont_table=__guard_fids_table",
+        "/alternatename:__guard_eh_cont_count=__guard_fids_count",
+        "/windows-sdk/lib/crt2.o",
+        "/windows-sdk/lib/crtbegin.o",
+        "/windows-sdk/lib/libc++.a",
+        "/windows-sdk/lib/libc++abi.a",
+        "/windows-sdk/lib/libmingw32.a",
+        "/windows-sdk/lib/libmingwex.a",
+        "/windows-sdk/lib/libmoldname.a",
+        "/windows-sdk/lib/libmsvcrt.a",
+        "/windows-sdk/lib/libunwind.a",
+        "/windows-sdk/lib/libwinpthread.a",
+        "/windows-sdk/lib/libkernel32.a",
+        "/windows-sdk/lib/libadvapi32.a",
+        "/windows-sdk/lib/libshell32.a",
+        "/windows-sdk/lib/libuser32.a",
+        "/windows-sdk/lib/libws2_32.a",
+        "/windows-sdk/lib/libsecur32.a",
+        "/windows-sdk/lib/libcrypt32.a",
+        "/windows-sdk/lib/libbcrypt.a",
+        "/windows-sdk/lib/libshlwapi.a",
+        "/windows-sdk/lib/libgdi32.a",
+        "/windows-sdk/lib/libgdiplus.a",
+        "/windows-sdk/lib/libmsimg32.a",
+        "/windows-sdk/lib/libd2d1.a",
+        "/windows-sdk/lib/libdwrite.a",
+        "/windows-sdk/lib/libwindowscodecs.a",
+        "/windows-sdk/lib/libole32.a",
+        "/windows-sdk/lib/liboleaut32.a",
+        "/windows-sdk/lib/libuuid.a",
+        "/windows-sdk/lib/libwinmm.a",
+        "/windows-sdk/lib/libdbghelp.a",
+        "/windows-sdk/lib/libdwmapi.a",
+        "/windows-sdk/lib/libd3d11.a",
+        "/windows-sdk/lib/libdxgi.a",
+        "/windows-sdk/lib/libopengl32.a",
+        "/windows-sdk/lib/libclang_rt.builtins-x86_64.a",
+        "/windows-sdk/lib/crtend.o"
+      ],
+      "runtimeSources": []
     }
   },
   "linkArguments": [
