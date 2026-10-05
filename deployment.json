@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-05T23:06:51.735394+00:00",
+  "generatedAt": "2026-10-05T23:58:21.795571+00:00",
   "swstack": {
-    "commit": "1c2c3929285aa28fd0dbc960f2aa1fb1f7505bf7",
+    "commit": "c9be08fec62eb87e50515d8e19139c144467c218",
     "localChanges": true
   },
   "iaassistant": {
     "commit": "eecfc5604c4123ae94dd066772989734dbbae9c1",
-    "localChanges": false
+    "localChanges": true
   },
   "files": {
     ".gitattributes": {
@@ -170,8 +170,8 @@
       "sha256": "aaf83c0eea967ddd452ffd56e4b2a0ed70468e13aa0b58926a30f1e55a658ea3"
     },
     "index.html": {
-      "bytes": 10816,
-      "sha256": "ed75d36e859194f078fbe89b01127f0b991c9b5b48a2086311a852a27f3a3ecb"
+      "bytes": 12630,
+      "sha256": "5cd224fa7b19aa408084e632eff3e61a763a7f539b503b2d2c3bf7dc6f92032f"
     },
     "licenses/Emscripten-LICENSE.txt": {
       "bytes": 5093,
@@ -199,35 +199,35 @@
     },
     "runtime/sdk-manifest.json": {
       "bytes": 1787,
-      "sha256": "1dc38f061cca408f21f42e64537b2637967bcd1c24a8085229c9a87284c7d3d0"
+      "sha256": "4dab087b7b86326eead570e4cde2c629420812289ac2babd7afcbc81d7b467eb"
     },
     "runtime/sdk.tar.gz": {
-      "bytes": 10493745,
-      "sha256": "d69a113a2c4f50d2a9db75fa9ef114f9cc3ac6d33d2ceec9849f844d906cb36b"
+      "bytes": 10494755,
+      "sha256": "82870ebf6878a9169a454411d6ca86aa5550ec1dcbfecf9323c23f5d4a1ffeae"
     },
     "runtime/SwCreatorWebRuntime.js": {
-      "bytes": 5420530,
-      "sha256": "231188e602de3754fe0ff37f2cd83c00d0c2967d4fca71fb6526724095b46acb"
+      "bytes": 5428063,
+      "sha256": "feabc521018bb3317b6b92d831ae0678e8e1bc6f0156b824455d14b94c7f4101"
     },
     "runtime/SwCreatorWebRuntime.wasm": {
-      "bytes": 14064730,
-      "sha256": "b5cb0a02c2555dc89e71e77954ec678bc36615722caae45c55cd3558bc5a6e8f"
+      "bytes": 14068079,
+      "sha256": "9ec6396aa9b04ac97313c7f321e6df8071bae527328fc625b76ec725f9271825"
     },
     "SwCreatorWeb.data": {
       "bytes": 28837850,
       "sha256": "9a2511addca9cb14087d5de15b55123be096ea2007c18d6939f6aeaab871068f"
     },
     "SwCreatorWeb.html": {
-      "bytes": 10816,
-      "sha256": "ed75d36e859194f078fbe89b01127f0b991c9b5b48a2086311a852a27f3a3ecb"
+      "bytes": 12630,
+      "sha256": "5cd224fa7b19aa408084e632eff3e61a763a7f539b503b2d2c3bf7dc6f92032f"
     },
     "SwCreatorWeb.js": {
-      "bytes": 145656,
-      "sha256": "09ec0696c6f9b74ac75bf751d864d169ccaf788de14e480a2e1ea70bf4d34c12"
+      "bytes": 148170,
+      "sha256": "dcc7ab231485a7a9553244a1f86fdd6c3fd1f223f07c29b05f732bfb1c26acc1"
     },
     "SwCreatorWeb.wasm": {
-      "bytes": 5979365,
-      "sha256": "feaf3a0a4ccbccc4dd1c1d36d1b684d5fa798b463d181c47c156efdc8549e80d"
+      "bytes": 6069649,
+      "sha256": "3f2f8b4951a17894597490475b84759482e339acbbb9619213a1e178c7c17fce"
     }
   }
 }
