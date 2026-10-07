@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-06T21:45:58.536796+00:00",
+  "generatedAt": "2026-10-07T07:34:18.062570+00:00",
   "swstack": {
     "commit": "c9be08fec62eb87e50515d8e19139c144467c218",
     "localChanges": true
   },
   "iaassistant": {
-    "commit": "a4c0e5c05426465b7b969438818ac87eb5018fdc",
+    "commit": "a3ba03ff1402307078620e65197edd6c5f03f39c",
     "localChanges": true
   },
   "files": {
@@ -171,7 +171,7 @@
     },
     "index.html": {
       "bytes": 12630,
-      "sha256": "c93372a485611604f759db999f8ff3221d416ea0517e7971655c134c9af8e742"
+      "sha256": "1f55741f1dd3b94f2233f796cbadfebf62bdf1e7b5f3a1f614ae0701a88cd125"
     },
     "licenses/Emscripten-LICENSE.txt": {
       "bytes": 5093,
@@ -219,15 +219,15 @@
     },
     "SwCreatorWeb.html": {
       "bytes": 12630,
-      "sha256": "c93372a485611604f759db999f8ff3221d416ea0517e7971655c134c9af8e742"
+      "sha256": "1f55741f1dd3b94f2233f796cbadfebf62bdf1e7b5f3a1f614ae0701a88cd125"
     },
     "SwCreatorWeb.js": {
       "bytes": 149262,
-      "sha256": "142e7cbe2632fb5853b9fd792fea745d9900cdf5ea1e8b88a63df115e484f4c2"
+      "sha256": "d1dd00274f4f01ca3526b1d73008c5845a4d7a3d22f3cdb6b8cdc98f87a8e6fb"
     },
     "SwCreatorWeb.wasm": {
-      "bytes": 6088686,
-      "sha256": "e54e73d6c85b48501aa7eb7e84dbb362b687a3a00f3ffaaefb89018220b39877"
+      "bytes": 6141551,
+      "sha256": "438c00ca4a11c99c9039b9721ca58a956c4adcec662ca84533698c1802199c84"
     }
   }
 }
