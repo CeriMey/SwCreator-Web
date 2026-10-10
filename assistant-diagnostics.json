@@ -1,0 +1,11 @@
+{
+  "application": "SwCreator",
+  "document": "SwCreatorWeb.html",
+  "release": "8de7b7cc419912782b1f",
+  "assets": {
+    "SwCreatorWeb.js": "8a40f2890a94b8ff1c8672a7bd12423b670cbe9199749f9ec981d0ae612455f5",
+    "SwCreatorWeb.wasm": "18d301ed2752723c30afbb2b458b297bef0162380f877b4d59d3da4c2b55d1a0",
+    "SwCreatorWeb.data": "81939d6e1f55b36c2919bbddf140adf6cc920024425a27993452b7d04f9fe723",
+    "compiler/client.js": "76ce097187d890eb027911ccf8e3d920bcc1e5e52e879986eb36cdbad65508bd"
+  }
+}
