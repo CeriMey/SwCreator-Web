@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T21:18:07.339336+00:00",
+  "generatedAt": "2026-10-10T21:21:36.890375+00:00",
   "softi": {
     "commit": "9389e81f9893ece91c4b5cc3511c8246435cf91a",
     "localChanges": true
@@ -34,12 +34,12 @@
       "sha256": "58fab3fa04735b06fb016e11c1b7e316f892f73f5472de96edf926fffa8f6527"
     },
     "assistant-diagnostics.html": {
-      "bytes": 1378,
-      "sha256": "e663a27d6ae96be32217f9c7518740548e3299651f7dcd4d601e04d7efe1381e"
+      "bytes": 1617,
+      "sha256": "d77a7cafefef6b7cdf3ef064c4bdc374b1ccd6db3f559d584c78eaff384d5aae"
     },
     "assistant-diagnostics.js": {
-      "bytes": 5674,
-      "sha256": "e2d012c0b6b47ba77910d2f5cb6db90204515e213cf4463834ef316d66f06229"
+      "bytes": 8337,
+      "sha256": "a324ae51cc34ac92da0a44ebde20c106752c101ab88b8d85235b5088e3423bf5"
     },
     "assistant-diagnostics.json": {
       "bytes": 505,

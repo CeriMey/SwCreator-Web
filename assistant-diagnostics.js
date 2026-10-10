@@ -1,6 +1,6 @@
 const run=document.getElementById('run'),copy=document.getElementById('copy');
 const status=document.getElementById('status'),output=document.getElementById('report');
-let report;
+let report,applicationWindow;
 const wait=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
 function publish(value){report=value;output.textContent=JSON.stringify(value,null,2);output.hidden=false;copy.disabled=false;}
 function errorCode(value){
@@ -22,12 +22,53 @@ async function readEndpoint(browser,credential,endpoint){
     else if(Array.isArray(body.data || body.models))result.modelCount=(body.data || body.models).length;
     return result;
 }
+function observeAssistant(app,result){
+    const browser=app.Module.iaBrowser;
+    result.assistantTrace=[];
+    const record=value=>{
+        result.assistantTrace.push(value);
+        if(result.assistantTrace.length>64)result.assistantTrace.shift();
+        if(report===result)publish(result);
+        return value;
+    };
+    const request=browser.request;
+    browser.request=async function(application,provider,operation,...args){
+        const row=record({transport:'extension-operation',application,provider,operation});
+        try{
+            const value=await request.call(this,application,provider,operation,...args);
+            row.success=true;
+            if(typeof value.authenticated==='boolean')row.authenticated=value.authenticated;
+            if(Array.isArray(value.models))row.modelCount=value.models.length;
+            row.resultBytes=new TextEncoder().encode(JSON.stringify(value)).length;
+            return value;
+        }catch(error){row.success=false;row.error=String(error.message || 'Connexion indisponible').slice(0,512);throw error;}
+        finally{if(report===result)publish(result);}
+    };
+    for(const [owner,key,transport] of [[browser,'fetch','extension-http'],[app,'fetch','page-http']]){
+        const original=owner[key];
+        owner[key]=async function(...args){
+            const offset=transport==='extension-http'?1:0;
+            let url;
+            try{url=new URL(typeof args[offset]==='string'?args[offset]:args[offset].url,app.location.href);}catch(_){return original.apply(this,args);}
+            if(!['https://api.openai.com','https://api.anthropic.com'].includes(url.origin))return original.apply(this,args);
+            const options=args[offset+1] || {};
+            const row=record({transport,provider:url.hostname==='api.anthropic.com'?'claude':'chatgpt',path:url.pathname,method:options.method || 'GET'});
+            if(transport==='page-http'){
+                const authorization=new Headers(options.headers || {}).get('Authorization') || '';
+                row.credentialType=authorization.startsWith('Bearer ia-browser.')?'extension-reference':authorization?'direct-credential':'none';
+            }
+            try{const response=await original.apply(this,args);row.httpStatus=response.status;return response;}
+            catch(error){row.error=error.name || 'NetworkError';throw error;}
+            finally{if(report===result)publish(result);}
+        };
+    }
+}
 run.onclick=async()=>{
     // Open during the user gesture; a delayed window.open is blocked by browsers.
     const app=window.open('about:blank','softi-account-diagnostic');
     if(!app){status.textContent='Autorisez l’ouverture de l’onglet Softi, puis réessayez.';return;}
     run.disabled=true;copy.disabled=true;status.textContent='Vérification en cours…';
-    const result={diagnosticVersion:2,page:location.origin+location.pathname,browser:navigator.userAgent,providers:{}};
+    const result={diagnosticVersion:3,page:location.origin+location.pathname,browser:navigator.userAgent,providers:{}};
     try{
         const response=await fetch('assistant-diagnostics.json?check='+Date.now(),{cache:'no-store'});
         if(!response.ok)throw new Error('La configuration du diagnostic est indisponible.');
@@ -44,6 +85,7 @@ run.onclick=async()=>{
         result.applicationCurrent=result.loadedRelease===config.release;
         const browser=app.Module.iaBrowser;
         if(!browser || !app.softiExtensionInfo)throw new Error('Une ancienne version de Softi est encore chargée.');
+        applicationWindow=app;observeAssistant(app,result);
         result.extension=await app.softiExtensionInfo();
         for(const provider of ['chatgpt','claude']){
             const row=result.providers[provider]={};
@@ -70,6 +112,7 @@ run.onclick=async()=>{
     finally{publish(result);run.disabled=false;window.focus();}
 };
 copy.onclick=async()=>{
+    if(report && applicationWindow && !applicationWindow.closed)report.assistantState=applicationWindow.Module?.swCreatorAssistantState ?? null;
     try{await navigator.clipboard.writeText(JSON.stringify(report,null,2));status.textContent='Diagnostic copié.';}
     catch(_){const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(output);selection.removeAllRanges();selection.addRange(range);status.textContent='Le diagnostic est sélectionné. Copiez-le avec Ctrl+C.';}
 };
