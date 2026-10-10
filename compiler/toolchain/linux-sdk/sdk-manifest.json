@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "id": "gnu-linux-x64",
+  "kind": "elf",
+  "triple": "x86_64-unknown-linux-gnu",
+  "archives": [
+    {
+      "path": "sdk.tar.gz",
+      "sha256": "94fa22a2d3983b79fe81c2e0d68943c8cd41784a59691fb1379f713566d8ec80"
+    }
+  ],
+  "licenseFile": "SDK-LICENSES.txt",
+  "runtimeFiles": [
+    "/linux-sdk/lib/libc.so.6",
+    "/linux-sdk/lib/ld-linux-x86-64.so.2",
+    "/linux-sdk/lib/libm.so.6",
+    "/linux-sdk/lib/libcrypto.so.3",
+    "/linux-sdk/lib/libz.so.1",
+    "/linux-sdk/lib/libzstd.so.1",
+    "/linux-sdk/lib/libX11.so.6",
+    "/linux-sdk/lib/libxcb.so.1",
+    "/linux-sdk/lib/libXau.so.6",
+    "/linux-sdk/lib/libXdmcp.so.6",
+    "/linux-sdk/lib/libXext.so.6"
+  ],
+  "includeDirs": [
+    "/linux-sdk/include/c++",
+    "/linux-sdk/include/c++-target",
+    "/linux-sdk/include",
+    "/linux-sdk/swstack/include/SwStack",
+    "/linux-sdk/swstack/include/SwStack/core",
+    "/linux-sdk/swstack/include/SwStack/core/runtime",
+    "/linux-sdk/swstack/include/SwStack/core/object",
+    "/linux-sdk/swstack/include/SwStack/core/gui",
+    "/linux-sdk/swstack/include/SwStack/core/io",
+    "/linux-sdk/swstack/include/SwStack/core/fs",
+    "/linux-sdk/swstack/include/SwStack/core/platform",
+    "/linux-sdk/swstack/include/SwStack/core/types",
+    "/linux-sdk/swstack/include/SwStack/core/threeD"
+  ],
+  "definitions": [
+    "SW_STATIC"
+  ],
+  "compileArguments": [
+    "-fno-pie",
+    "-fno-stack-protector",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-resource-dir",
+    "/lib/clang/23"
+  ],
+  "startObjects": [
+    "/linux-sdk/lib/crt1.o",
+    "/linux-sdk/lib/crti.o",
+    "/linux-sdk/lib/crtbegin.o"
+  ],
+  "profiles": {
+    "console": {
+      "linkArguments": [
+        "--no-threads",
+        "-m",
+        "elf_x86_64",
+        "--gc-sections",
+        "--eh-frame-hdr",
+        "--dynamic-linker=/lib64/ld-linux-x86-64.so.2",
+        "--allow-shlib-undefined",
+        "--start-group",
+        "/linux-sdk/lib/libstdc++.a",
+        "/linux-sdk/lib/libgcc.a",
+        "/linux-sdk/lib/libgcc_eh.a",
+        "--end-group",
+        "--as-needed",
+        "/linux-sdk/lib/libc.so.6",
+        "/linux-sdk/lib/libm.so.6",
+        "/linux-sdk/lib/libcrypto.so.3",
+        "/linux-sdk/lib/libX11.so.6",
+        "/linux-sdk/lib/libXext.so.6",
+        "/linux-sdk/lib/crtend.o",
+        "/linux-sdk/lib/crtn.o"
+      ],
+      "runtimeSources": []
+    },
+    "core": {
+      "linkArguments": [
+        "--no-threads",
+        "-m",
+        "elf_x86_64",
+        "--gc-sections",
+        "--eh-frame-hdr",
+        "--dynamic-linker=/lib64/ld-linux-x86-64.so.2",
+        "--allow-shlib-undefined",
+        "--start-group",
+        "/linux-sdk/swstack/lib/libSwCore.a",
+        "/linux-sdk/swstack/lib/libSwMiniz.a",
+        "/linux-sdk/swstack/lib/libSwMlKem.a",
+        "/linux-sdk/lib/libstdc++.a",
+        "/linux-sdk/lib/libgcc.a",
+        "/linux-sdk/lib/libgcc_eh.a",
+        "--end-group",
+        "--as-needed",
+        "/linux-sdk/lib/libc.so.6",
+        "/linux-sdk/lib/libm.so.6",
+        "/linux-sdk/lib/libcrypto.so.3",
+        "/linux-sdk/lib/libX11.so.6",
+        "/linux-sdk/lib/libXext.so.6",
+        "/linux-sdk/lib/crtend.o",
+        "/linux-sdk/lib/crtn.o"
+      ],
+      "runtimeSources": []
+    },
+    "swstack": {
+      "linkArguments": [
+        "--no-threads",
+        "-m",
+        "elf_x86_64",
+        "--gc-sections",
+        "--eh-frame-hdr",
+        "--dynamic-linker=/lib64/ld-linux-x86-64.so.2",
+        "--allow-shlib-undefined",
+        "--start-group",
+        "/linux-sdk/swstack/lib/libSwCharts.a",
+        "/linux-sdk/swstack/lib/libSwCodeEditor.a",
+        "/linux-sdk/swstack/lib/libSwCore.a",
+        "/linux-sdk/swstack/lib/libSwGui.a",
+        "/linux-sdk/swstack/lib/libSwMiniz.a",
+        "/linux-sdk/swstack/lib/libSwNodes.a",
+        "/linux-sdk/swstack/lib/libSwThreeD.a",
+        "/linux-sdk/swstack/lib/libSwUiTools.a",
+        "/linux-sdk/swstack/lib/libSwWidgets.a",
+        "/linux-sdk/swstack/lib/libSwMlKem.a",
+        "/linux-sdk/lib/libstdc++.a",
+        "/linux-sdk/lib/libgcc.a",
+        "/linux-sdk/lib/libgcc_eh.a",
+        "--end-group",
+        "--as-needed",
+        "/linux-sdk/lib/libc.so.6",
+        "/linux-sdk/lib/libm.so.6",
+        "/linux-sdk/lib/libcrypto.so.3",
+        "/linux-sdk/lib/libX11.so.6",
+        "/linux-sdk/lib/libXext.so.6",
+        "/linux-sdk/lib/crtend.o",
+        "/linux-sdk/lib/crtn.o"
+      ],
+      "runtimeSources": [
+        "/linux-sdk/creator_main.cpp"
+      ]
+    }
+  }
+}

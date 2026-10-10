@@ -100,6 +100,54 @@
         "Standard C/C++ libraries and SwStack native SDK require an additional Windows target SDK archive."
       ],
       "sdkManifest": "windows-sdk/sdk-manifest.json"
+    },
+    "linux": {
+      "kind": "elf",
+      "runtime": "emscripten",
+      "linkerRuntime": "binji",
+      "triple": "x86_64-unknown-linux-gnu",
+      "compilerVersion": "23.1.0",
+      "compiler": {
+        "path": "windows/Compiler.wasm",
+        "sha256": "6ec69d28a63e03d0f6953357206cbba13da27af05e1db336b48808780e04ddd0",
+        "script": "windows/Compiler.mjs",
+        "scriptSha256": "ce781a25e957b70c63402dce79bbd1abb78a933b4544fcc645a4347df312e371",
+        "data": "windows/Compiler.data",
+        "dataSha256": "0ece75e783df546656a03cb83cc55c8bf84690c4d2530b446d5c261f107e84be",
+        "api": "run_command",
+        "driver": "clang++"
+      },
+      "linker": {
+        "path": "windows/lld.wasm",
+        "sha256": "551401e62a77857156ff773b2d97adeefac964e7f9cf59fa8b9dc32e8b29342d"
+      },
+      "memfs": {
+        "path": "windows/memfs.wasm",
+        "sha256": "2c72ee42bd9430029dda8c6bafc9f37143f6fe88d5f1ea950a70259ab748bcfe"
+      },
+      "runtimeScript": "windows/binji-runtime.mjs",
+      "archives": [
+        {
+          "path": "windows/empty.tar",
+          "sha256": "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        }
+      ],
+      "includeDirs": [],
+      "libraryDirs": [],
+      "compileArguments": [
+        "-resource-dir",
+        "/lib/clang/23",
+        "-fms-extensions"
+      ],
+      "linkArguments": [
+        "/entry:main",
+        "/subsystem:console",
+        "/nodefaultlib"
+      ],
+      "limitations": [
+        "Standard C/C++ libraries and SwStack native SDK require an additional Windows target SDK archive."
+      ],
+      "sdkManifest": "linux-sdk/sdk-manifest.json"
     }
   }
 }

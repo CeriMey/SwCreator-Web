@@ -3,10 +3,37 @@
   "id": "swstack-web",
   "target": "wasm32-unknown-emscripten",
   "entry": "creator_create_ui",
+  "modules": [
+    {
+      "id": "IaAssistant",
+      "package": "IaAssistant",
+      "target": "IaAssistant::Widgets"
+    },
+    {
+      "id": "Map",
+      "package": "SwMap",
+      "target": "SwMap::Designer"
+    },
+    {
+      "id": "MediaCore",
+      "package": "SwMediaCore",
+      "target": "SwMediaCore::SwMediaCore"
+    },
+    {
+      "id": "Charts",
+      "package": "SwStack",
+      "target": "SwStack::Charts"
+    },
+    {
+      "id": "CodeEditor",
+      "package": "SwStack",
+      "target": "SwStack::CodeEditor"
+    }
+  ],
   "archives": [
     {
       "path": "sdk.tar.gz",
-      "sha256": "d4d4f9a972d139fdfef1850323d96d6ae28812d72a48b545bbae0a9f65a2bc76"
+      "sha256": "09f9c388f9775d039f4fbea04fa1d3851deec01bfbad876df22749bbaddd43c3"
     }
   ],
   "runtime": {
@@ -54,7 +81,68 @@
     "/swstack/include/SwStack/core/fs",
     "/swstack/include/SwStack/core/platform",
     "/swstack/include/SwStack/core/types",
-    "/swstack/include/SwStack/core/threeD"
+    "/swstack/include/SwStack/core/threeD",
+    "/modules/IaAssistant/include/0",
+    "/modules/IaAssistant/include/0/ia/agents",
+    "/modules/IaAssistant/include/0/ia/agents/api",
+    "/modules/IaAssistant/include/0/ia/agents/claude",
+    "/modules/IaAssistant/include/0/ia/agents/native",
+    "/modules/IaAssistant/include/0/ia/agents/native/bridge",
+    "/modules/IaAssistant/include/0/ia/agents/native/collaboration",
+    "/modules/IaAssistant/include/0/ia/application",
+    "/modules/IaAssistant/include/0/ia/core",
+    "/modules/IaAssistant/include/0/ia/mcp",
+    "/modules/IaAssistant/include/0/ia/tools",
+    "/modules/IaAssistant/include/0/ia/transport",
+    "/modules/IaAssistant/include/0/ia/widgets",
+    "/modules/Map/include/0",
+    "/modules/Map/include/0/map",
+    "/modules/MediaCore/include/0",
+    "/modules/MediaCore/include/0/media/capture",
+    "/modules/MediaCore/include/0/media/client",
+    "/modules/MediaCore/include/0/media/client/receiving",
+    "/modules/MediaCore/include/0/media/client/receiving/private",
+    "/modules/MediaCore/include/0/media/codec/audio",
+    "/modules/MediaCore/include/0/media/codec/bitstream",
+    "/modules/MediaCore/include/0/media/codec/decoder",
+    "/modules/MediaCore/include/0/media/codec/encoder",
+    "/modules/MediaCore/include/0/media/codec/video",
+    "/modules/MediaCore/include/0/media/container/mp4",
+    "/modules/MediaCore/include/0/media/container/mpegts",
+    "/modules/MediaCore/include/0/media/core",
+    "/modules/MediaCore/include/0/media/device",
+    "/modules/MediaCore/include/0/media/diagnostics",
+    "/modules/MediaCore/include/0/media/gui",
+    "/modules/MediaCore/include/0/media/input",
+    "/modules/MediaCore/include/0/media/output",
+    "/modules/MediaCore/include/0/media/pipeline",
+    "/modules/MediaCore/include/0/media/platform/android",
+    "/modules/MediaCore/include/0/media/platform/linux",
+    "/modules/MediaCore/include/0/media/platform/linux/profiles",
+    "/modules/MediaCore/include/0/media/platform/linux/v4l2",
+    "/modules/MediaCore/include/0/media/platform/win",
+    "/modules/MediaCore/include/0/media/platform/win/d3d11",
+    "/modules/MediaCore/include/0/media/platform/win/d3d12",
+    "/modules/MediaCore/include/0/media/platform/win/dxva",
+    "/modules/MediaCore/include/0/media/platform/win/mf",
+    "/modules/MediaCore/include/0/media/playback",
+    "/modules/MediaCore/include/0/media/protocol/rtp",
+    "/modules/MediaCore/include/0/media/protocol/rtsp",
+    "/modules/MediaCore/include/0/media/protocol/srt",
+    "/modules/MediaCore/include/0/media/protocol/swvtp",
+    "/modules/MediaCore/include/0/media/runtime",
+    "/modules/MediaCore/include/0/media/server",
+    "/modules/MediaCore/include/0/media/server/publishing",
+    "/modules/MediaCore/include/0/media/server/publishing/private",
+    "/modules/MediaCore/include/0/media/server/rtp",
+    "/modules/MediaCore/include/0/media/server/rtsp",
+    "/modules/MediaCore/include/0/media/server/swvtp",
+    "/modules/MediaCore/include/0/media/server/transport",
+    "/modules/MediaCore/include/0/media/transport",
+    "/modules/Charts/include/0",
+    "/modules/Charts/include/0/softi",
+    "/modules/CodeEditor/include/0",
+    "/modules/CodeEditor/include/0/softi"
   ],
   "linkArguments": [
     "-shared",

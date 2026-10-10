@@ -6,7 +6,7 @@
   "archives": [
     {
       "path": "sdk.tar.gz",
-      "sha256": "f69a40a6b6ca9c9ec8d54d5a04180ba9f6a91ff7edd3a2928208ee1db6f0d5b1"
+      "sha256": "2685a3e49f54b85e8064da358f4a13fdc43469e019b4dbfd7ba0bdc761839efa"
     }
   ],
   "licenseFile": "SDK-LICENSES.txt",
@@ -96,7 +96,9 @@
         "/windows-sdk/swstack/lib/libSwCodeEditor.a",
         "/windows-sdk/swstack/lib/libSwCore.a",
         "/windows-sdk/swstack/lib/libSwGui.a",
+        "/windows-sdk/swstack/lib/libSwInstaller.a",
         "/windows-sdk/swstack/lib/libSwMiniz.a",
+        "/windows-sdk/swstack/lib/libSwNetwork.a",
         "/windows-sdk/swstack/lib/libSwNodes.a",
         "/windows-sdk/swstack/lib/libSwThreeD.a",
         "/windows-sdk/swstack/lib/libSwUiTools.a",
@@ -246,5 +248,22 @@
     "/windows-sdk/lib/libopengl32.a",
     "/windows-sdk/lib/libclang_rt.builtins-x86_64.a",
     "/windows-sdk/lib/crtend.o"
-  ]
+  ],
+  "installerRuntime": {
+    "bootstrap": "windows-sdk/setup/SwSetupBootstrap.exe",
+    "files": [
+      {
+        "path": "SwSetupRuntime.exe",
+        "source": "windows-sdk/setup/SwSetupRuntime.exe"
+      },
+      {
+        "path": "libc++.dll",
+        "source": "windows-sdk/setup/libc++.dll"
+      },
+      {
+        "path": "libunwind.dll",
+        "source": "windows-sdk/setup/libunwind.dll"
+      }
+    ]
+  }
 }

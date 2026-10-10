@@ -12,13 +12,15 @@ by IaAssistant. Preserve the notices supplied with the SwStack distribution.
 The optional SwCad integration glue lives in the SwStack example and carries
 Apache-2.0 notices. The IaAssistant libraries it uses remain separately licensed.
 
-Codex is an external OpenAI runtime. Its software license and applicable OpenAI
-service terms remain separate from this component's license.
+The ChatGPT integration uses the embedded C++ engine and OpenAI services.
+No Codex runtime or SDK is bundled. Applicable OpenAI service terms remain
+separate from this component's license.
 
-No Claude SDK or authentication companion is included. Delivered builds do not
-offer claude.ai sign-in (https://code.claude.com/docs/en/agent-sdk/overview):
-Claude Desktop and Claude Code, separately installed and licensed by Anthropic,
-connect to the application through its MCP relay.
+No Claude SDK or authentication companion is included. The embedded Claude
+integration uses the application's C++ OAuth and HTTPS/SSE components; applicable
+Anthropic service terms remain separate. Claude Desktop and Claude Code are
+optional, separately installed and licensed applications that can connect through
+the MCP relay.
 
 The Claude and OpenAI marks drawn in the toolbar are trademarks of Anthropic PBC
 and OpenAI. They only identify the corresponding provider.

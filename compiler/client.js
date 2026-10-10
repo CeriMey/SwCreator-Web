@@ -206,6 +206,7 @@
         const core = sideModule && result.projectProfile === 'core';
         const gui = sideModule && !core;
         container.classList.toggle('swcreator-gui-preview', gui);
+        container.classList.remove('swcreator-window-preview');
         if (gui) {
             const element = module.canvas?.closest('[role="application"]');
             if (element) {
@@ -256,7 +257,11 @@
                 const listener = ({source, origin, data}) => {
                     if (source !== frame.contentWindow || origin !== location.origin || !data || data.type !== 'swcreator:preview-result' || data.id !== id) return;
                     clear();
-                    if (data.ok) resolve();
+                    if (data.ok) {
+                        container.classList.toggle('swcreator-window-preview', gui &&
+                            !!frame.contentDocument?.querySelector('.swstack-web-window[role="application"]'));
+                        resolve();
+                    }
                     else reject(new Error(data.error || 'Unable to start the application.'));
                 };
                 const timeout = setTimeout(() => {
@@ -288,7 +293,7 @@
         });
         result.buildId = request.buildId;
         try {
-            if (request.target === 'windows' && request.download !== false) {
+            if ((request.target === 'windows' || request.target === 'linux') && request.download !== false) {
                 for (const artifact of result.artifacts) module.swCreatorDownload(artifact.path, artifact.bytes, artifact.mime);
             } else if (request.target === 'web' && request.preview !== false) {
                 await module.swCreatorPreview(result);

@@ -12,3 +12,4 @@ Component licenses and notices: licenses/
 Compiler licenses: compiler/toolchain/licenses/
 WASI shim licenses: compiler/toolchain/wasi-shim/
 Windows SDK notices: compiler/toolchain/windows-sdk/SDK-LICENSES.txt
+Linux SDK notices: compiler/toolchain/linux-sdk/SDK-LICENSES.txt

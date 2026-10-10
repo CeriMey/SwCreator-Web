@@ -222,12 +222,12 @@ export class BrowserToolchain {
         if (target?.sdkManifest) {
             sdkBase = new URL(target.sdkManifest, this.manifestUrl);
             const sdk = await this.sdkManifest(sdkBase,
-                'The Windows target SDK is missing. Package it before compiling this project.');
+                `The ${request.target} target SDK is missing. Package it before compiling this project.`);
             target = {...target, ...sdk};
         }
         if (target?.profiles) {
             const profile = target.profiles[request.profile || 'console'];
-            if (!profile) throw new Error(`The Windows SDK does not provide the ${request.profile} profile.`);
+            if (!profile) throw new Error(`The ${request.target} SDK does not provide the ${request.profile} profile.`);
             target = {...target, ...profile};
         }
         if (!target) throw new Error(`This browser toolchain does not provide the ${request.target} target.`);
@@ -269,7 +269,7 @@ export class BrowserToolchain {
                 for (const [name, entry] of directory.contents) {
                     const path = parent ? `${parent}/${name}` : name;
                     if (entry.contents) { api.memfs.addDirectory(path); copy(entry, path); }
-                    else if (target.runtime === 'binji' || /\.(a|lib|o|obj|def)$/i.test(path)) {
+                    else if (target.runtime === 'binji' || /\.(a|lib|o|obj|def|so(?:\.[0-9]+)*)$/i.test(path)) {
                         try { api.memfs.addFile(path, entry.data); }
                         catch (error) { throw new Error(`Unable to stage linker input ${path}: ${error.message}`); }
                     }
@@ -295,7 +295,7 @@ export class BrowserToolchain {
             const compiler = target.compiler;
             const scriptUrl = new URL(compiler.script, this.manifestUrl);
             nativeModule = await cachedLoad(this.nativeCompilers, scriptUrl.href, async () => {
-                this.emit({type: 'status', text: 'Loading the Windows compiler…'});
+                this.emit({type: 'status', text: 'Loading the native compiler…'});
                 await verifiedBytes(scriptUrl, compiler.scriptSha256);
                 const {default: factory} = await import(scriptUrl.href);
                 const wasmBinary = await verifiedBytes(new URL(compiler.path, this.manifestUrl), compiler.sha256);
@@ -348,6 +348,9 @@ export class BrowserToolchain {
         if (request.profile === 'swstack') definitions.push('-DSWCREATOR_PROJECT_RUNTIME=1',
             `-DSWCREATOR_FORM_WIDTH=${formSize.width}`, `-DSWCREATOR_FORM_HEIGHT=${formSize.height}`);
         if (sideModule && request.profile === 'core') definitions.push('-DSWCREATOR_PROJECT_RUNTIME=1');
+        const windowFactory = request.profile === 'swstack' && sources.some(path =>
+            /\bcreator_create_window\s*\(/.test(files.find(file => projectPath(file.path) === path)?.content || ''));
+        if (windowFactory) definitions.push('-DSWCREATOR_HAS_WINDOW_FACTORY=1');
         for (let index = 0; index < sources.length; ++index) {
             const path = sources[index];
             this.emit({type: 'status', text: `Compiling ${path}…`});
@@ -378,20 +381,27 @@ export class BrowserToolchain {
         }
         this.emit({type: 'status', text: 'Linking the application…'});
         const windows = target.kind === 'coff';
-        const path = `/build/${name}.${windows ? 'exe' : 'wasm'}`;
+        const linux = target.kind === 'elf';
+        const path = `/build/${name}${windows ? '.exe' : linux ? '' : '.wasm'}`;
         const linker = target.linker || this.manifest.linker;
         const arguments_ = windows
             ? ['lld-link', `/out:${path}`, ...objects, ...(target.linkArguments || [])]
+            : linux ? ['ld.lld', '-o', path, ...(target.startObjects || []), ...objects,
+                ...(target.libraryDirs || []).map(dir => `-L${dir}`), ...(target.linkArguments || [])]
             : ['wasm-ld', '-o', path, ...(target.libraryDirs || []).map(dir => `-L${dir}`),
-                ...(target.startObjects || []), ...objects, ...(target.linkArguments || [])];
+                ...(target.startObjects || []), ...objects, ...(target.linkArguments || []),
+                ...(sideModule && windowFactory ? ['--export=creator_create_window'] : [])];
         await (runLinker || runTool)(linker, arguments_);
         const bytes = readOutput(path);
-        const magic = windows ? bytes[0] === 77 && bytes[1] === 90 : bytes[0] === 0 && bytes[1] === 97 && bytes[2] === 115 && bytes[3] === 109;
+        const magic = windows ? bytes[0] === 77 && bytes[1] === 90
+            : linux ? bytes[0] === 127 && bytes[1] === 69 && bytes[2] === 76 && bytes[3] === 70
+            : bytes[0] === 0 && bytes[1] === 97 && bytes[2] === 115 && bytes[3] === 109;
         if (!magic) throw new Error('The linker produced an invalid application.');
         return {
             exitCode: 0, output: output.join(''), profile: target.kind,
             projectProfile: request.profile || 'console', formSize,
-            artifacts: [{path: path.split('/').pop(), bytes, mime: windows ? 'application/vnd.microsoft.portable-executable' : 'application/wasm'}],
+            artifacts: [{path: path.split('/').pop(), bytes, mime: windows ? 'application/vnd.microsoft.portable-executable'
+                : linux ? 'application/x-executable' : 'application/wasm'}],
         };
     }
 }

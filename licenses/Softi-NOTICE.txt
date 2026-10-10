@@ -1,0 +1,5 @@
+Softi was extracted from the SwCreator application in SwStack.
+The original source license and copyright notices are retained.
+
+SwStack and IaAssistant remain separate dependencies. Their licenses and
+notices apply to their respective components and accompany packaged builds.
