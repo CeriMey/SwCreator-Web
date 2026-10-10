@@ -5,18 +5,29 @@ const wait=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
 function publish(value){report=value;output.textContent=JSON.stringify(value,null,2);output.hidden=false;copy.disabled=false;}
 function errorCode(value){
     const message=value?.error?.message || '';
+    if(/CORS requests are not allowed for this Organization/i.test(message))return 'organization_browser_access_denied';
     if(message.includes('anthropic-dangerous-direct-browser-access'))return 'browser_header_required';
     if(/invalid.*(bearer|token|credential)|expired|revoked/i.test(message))return 'invalid_or_expired_session';
     if(/permission|scope|not allowed|not authorized|forbidden/i.test(message))return 'permission_denied';
     const type=value?.error?.type;
     return ['authentication_error','permission_error','rate_limit_error','api_error','invalid_request_error'].includes(type)?type:'http_error';
 }
+async function readEndpoint(browser,credential,endpoint){
+    const response=await browser.fetch(credential,endpoint);
+    const text=await response.text();
+    const result={httpStatus:response.status,responseBytes:new TextEncoder().encode(text).length};
+    let body;
+    try{body=JSON.parse(text);}catch(_){result.errorCode='non_json_response';return result;}
+    if(!response.ok)result.errorCode=errorCode(body);
+    else if(Array.isArray(body.data || body.models))result.modelCount=(body.data || body.models).length;
+    return result;
+}
 run.onclick=async()=>{
     // Open during the user gesture; a delayed window.open is blocked by browsers.
     const app=window.open('about:blank','softi-account-diagnostic');
     if(!app){status.textContent='Autorisez l’ouverture de l’onglet Softi, puis réessayez.';return;}
     run.disabled=true;copy.disabled=true;status.textContent='Vérification en cours…';
-    const result={page:location.origin+location.pathname,browser:navigator.userAgent,providers:{}};
+    const result={diagnosticVersion:2,page:location.origin+location.pathname,browser:navigator.userAgent,providers:{}};
     try{
         const response=await fetch('assistant-diagnostics.json?check='+Date.now(),{cache:'no-store'});
         if(!response.ok)throw new Error('La configuration du diagnostic est indisponible.');
@@ -41,12 +52,17 @@ run.onclick=async()=>{
                 row.paired=account.paired!==false;row.authenticated=account.authenticated===true;
                 if(!row.authenticated)continue;
                 const endpoint=provider==='claude'?'https://api.anthropic.com/v1/models':'https://api.openai.com/v1/models';
-                const response=await browser.fetch(account.credential,endpoint);
-                row.httpStatus=response.status;
-                let body;
-                try{body=await response.json();}catch(_){row.errorCode='non_json_response';continue;}
-                if(!response.ok)row.errorCode=errorCode(body);
-                else row.modelCount=(body.data || body.models || []).length;
+                Object.assign(row,await readEndpoint(browser,account.credential,endpoint));
+                // The assistant uses a different catalogue operation from the raw HTTP probe.
+                try{
+                    const catalog=await browser.request(config.application,provider,'models',{binding:account.binding});
+                    row.assistantModels={available:true,modelCount:catalog.models?.length || 0};
+                }catch(error){row.assistantModels={available:false,error:String(error.message || 'Catalogue indisponible').slice(0,512)};}
+                if(provider==='claude'){
+                    // Claude's C++ agent validates the profile before requesting its models.
+                    try{row.profile=await readEndpoint(browser,account.credential,'https://api.anthropic.com/api/oauth/profile');}
+                    catch(error){row.profile={error:String(error.message || 'Profil indisponible').slice(0,512)};}
+                }
             }catch(error){row.error=String(error.message || 'Connexion indisponible').slice(0,512);}
         }
         status.textContent='Vérification terminée. Copiez le diagnostic pour examiner le blocage.';
