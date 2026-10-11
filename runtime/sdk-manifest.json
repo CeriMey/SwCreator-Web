@@ -33,7 +33,7 @@
   "archives": [
     {
       "path": "sdk.tar.gz",
-      "sha256": "85362c1386d4c8d02442a4eb982592c53e276d16a12127ad6844e3380e923649"
+      "sha256": "fb44f7e966decb686a7642a115280060f24f689b74ae515a2523f3966a0f74f7"
     }
   ],
   "runtime": {

@@ -85,8 +85,120 @@
         return module.UTF8ToString(pointer) || fallback;
     }
 
+    // A file selection grants access only to that file. Ask for the containing
+    // directory as well, using a real DOM click so browser user activation is
+    // preserved even though the C++ workbench dispatches input asynchronously.
+    module.swCreatorChooseProject = function ({english = false, dark = true} = {}) {
+        if (module.swCreatorImportDecision || document.getElementById('project-import')) return false;
+        const tr = (fr, en) => english ? en : fr;
+        const dialog = document.createElement('dialog');
+        dialog.id = 'project-import';
+        dialog.classList.toggle('light', !dark);
+        dialog.setAttribute('aria-labelledby', 'project-import-title');
+        dialog.innerHTML = `<h2 id="project-import-title"></h2><p id="project-import-description"></p>
+            <input id="project-cmake" type="file" accept=".txt" hidden>
+            <button id="project-choose-cmake" class="project-step" type="button"></button>
+            <input id="project-directory" type="file" webkitdirectory multiple hidden>
+            <button id="project-choose-directory" class="project-step project-import-primary" type="button" disabled></button>
+            <p id="project-import-status" role="status" aria-live="polite"></p>
+            <div class="project-import-actions"><button id="project-import-cancel" type="button"></button></div>`;
+        const find = id => dialog.querySelector('#' + id);
+        find('project-import-title').textContent = tr('Ouvrir un projet CMake', 'Open a CMake project');
+        find('project-import-description').textContent = tr(
+            'Choisissez le CMakeLists.txt, puis son dossier pour importer les sources, sous-dossiers et ressources du projet.',
+            'Choose CMakeLists.txt, then its folder to import the project sources, subfolders and resources.');
+        find('project-choose-cmake').textContent = tr('1. Choisir CMakeLists.txt', '1. Choose CMakeLists.txt');
+        find('project-choose-directory').textContent = tr('2. Importer le dossier du projet', '2. Import the project folder');
+        find('project-import-cancel').textContent = tr('Annuler', 'Cancel');
+        let cmake = null;
+        let closed = false;
+        const status = (text, error = false) => {
+            find('project-import-status').textContent = text;
+            find('project-import-status').toggleAttribute('data-error', error);
+        };
+        const closeDialog = () => { closed = true; dialog.close(); };
+        dialog.addEventListener('close', () => { closed = true; dialog.remove(); module.canvas?.focus(); });
+        dialog.addEventListener('cancel', () => { closed = true; });
+        find('project-import-cancel').onclick = closeDialog;
+        find('project-choose-cmake').onclick = () => find('project-cmake').click();
+        find('project-choose-directory').onclick = () => find('project-directory').click();
+        find('project-cmake').onchange = () => {
+            cmake = find('project-cmake').files[0] || null;
+            if (cmake && cmake.name !== 'CMakeLists.txt') {
+                cmake = null;
+                status(tr('Choisissez un fichier nommé CMakeLists.txt.', 'Choose a file named CMakeLists.txt.'), true);
+            } else if (cmake) status(tr('CMakeLists.txt sélectionné. Choisissez maintenant le dossier qui le contient.',
+                'CMakeLists.txt selected. Now choose the folder containing it.'));
+            find('project-choose-directory').disabled = !cmake;
+        };
+        find('project-directory').onchange = async () => {
+            const selected = Array.from(find('project-directory').files);
+            find('project-directory').value = '';
+            if (!selected.length || !cmake) return;
+            find('project-choose-cmake').disabled = true;
+            find('project-choose-directory').disabled = true;
+            try {
+                const root = selected[0].webkitRelativePath.split('/')[0];
+                const candidates = selected.map(file => ({file, path:file.webkitRelativePath.slice(root.length + 1)}));
+                const rootCmake = candidates.find(item => item.path === 'CMakeLists.txt');
+                if (!rootCmake || rootCmake.file.size !== cmake.size || await rootCmake.file.text() !== await cmake.text())
+                    throw new Error(tr('Ce dossier ne contient pas le CMakeLists.txt sélectionné. Choisissez son dossier parent.',
+                        'This folder does not contain the selected CMakeLists.txt. Choose its containing folder.'));
+                const kept = candidates.filter(({path}) => !path.split('/').slice(0, -1).some(part =>
+                    part === '.git' || part === '.swcreator' || part === 'node_modules' || /^(?:build|cmake-build)(?:$|[-_])/i.test(part)));
+                if (kept.length > 10000 || kept.reduce((size, {file}) => size + file.size, 0) > 256 * 1024 * 1024)
+                    throw new Error(tr('Le dépôt dépasse 10 000 fichiers ou 256 Mio.', 'The repository exceeds 10,000 files or 256 MiB.'));
+                const snapshot = {version:1, format:'cmake', name:root, files:[]};
+                const decoder = new TextDecoder('utf-8', {fatal:true, ignoreBOM:true});
+                for (const {file, path} of kept) {
+                    if (closed) return;
+                    if (file.size > 64 * 1024 * 1024)
+                        throw new Error(tr('Fichier trop volumineux : ', 'File too large: ') + path);
+                    const bytes = new Uint8Array(await file.arrayBuffer());
+                    let content;
+                    try { content = decoder.decode(bytes); if (content.includes('\0')) content = null; } catch { content = null; }
+                    const imported = {path, content};
+                    if (content === null) {
+                        let binary = '';
+                        for (let offset = 0; offset < bytes.length; offset += 32768)
+                            binary += String.fromCharCode(...bytes.subarray(offset, offset + 32768));
+                        imported.content = btoa(binary);
+                        imported.encoding = 'base64';
+                    }
+                    snapshot.files.push(imported);
+                    status(tr('Lecture du projet : ', 'Reading project: ') + snapshot.files.length + ' / ' + kept.length);
+                }
+                if (closed) return;
+                const json = JSON.stringify(snapshot);
+                // Shared Save/Discard/Cancel dialogs must be reachable while
+                // deciding whether to leave the current project.
+                closeDialog();
+                const accepted = await new Promise(resolve => {
+                    module.swCreatorImportDecision = resolve;
+                    module.ccall('swcreator_web_prepare_import', null, ['string', 'string', 'number'], ['CMakeLists.txt', json, 1]);
+                });
+                if (!accepted) return;
+                if (!module.ccall('swcreator_web_import_project', 'number', ['string'], [json]))
+                    throw new Error(lastError(tr('Import du projet impossible.', 'Unable to import the project.')));
+                event(tr('Projet importé : ', 'Project imported: ') + root + ' (' + snapshot.files.length + tr(' fichiers)', ' files)'), false);
+            } catch (error) {
+                module.swCreatorImportDecision = null;
+                if (!closed) status(error.message || String(error), true);
+                else reportError(error);
+            } finally {
+                if (!closed) {
+                    find('project-choose-cmake').disabled = false;
+                    find('project-choose-directory').disabled = !cmake;
+                }
+            }
+        };
+        document.body.appendChild(dialog);
+        dialog.showModal();
+        return true;
+    };
+
     module.swCreatorChooseFiles = function () {
-        if (module.swCreatorImportDecision) return false;
+        if (module.swCreatorImportDecision || document.getElementById('project-import')) return false;
         const input = document.getElementById('files');
         if (!input) return false;
         input.click();
@@ -303,6 +415,11 @@
 
     module.swCreatorCompile = async function (request) {
         if (pending) throw new Error('A compilation is already running.');
+        // The worker and installer already accept raw byte buffers. Decode
+        // snapshot resources here so their bytes survive compilation/packaging.
+        if (request.files?.some(file => file.encoding === 'base64')) request = {...request,
+            files:request.files.map(file => file.encoding === 'base64'
+                ? {path:file.path, bytes:Uint8Array.from(atob(file.content), char => char.charCodeAt(0))} : file)};
         event('Starting compilation…', true, 'start', {buildId: request.buildId});
         const result = await new Promise((resolve, reject) => {
             const id = ++sequence;

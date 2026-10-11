@@ -11,20 +11,24 @@
   }
   const views = {
     designer: {
-      fr: ['01 — DESIGNER', 'Dessinez votre interface.', 'Placez vos widgets, ajustez leurs propriétés et retrouvez le formulaire dans votre projet C++.', 'Le Designer visuel de Softi avec un formulaire de démonstration.'],
-      en: ['01 — DESIGNER', 'Design your interface.', 'Place your widgets, adjust their properties and find the form in your C++ project.', 'The Softi visual designer with a demonstration form.']
+      fr: ['01 — DESIGNER', 'Dessinez votre interface.', 'Placez vos widgets, ajustez leurs propriétés et retrouvez le formulaire dans votre projet C++. Un seul formulaire pour le bureau, la tablette et le téléphone.', 'Le Designer visuel de Softi avec la station VigilDefence et sa carte satellite en 3D.'],
+      en: ['01 — DESIGNER', 'Design your interface.', 'Place your widgets, adjust their properties and find the form in your C++ project. One form for desktop, tablet and phone.', 'The Softi visual designer with the VigilDefence station and its 3D satellite map.']
     },
     code: {
-      fr: ['02 — C++', 'Écrivez ce qui la rend unique.', 'Retrouvez les sources, les classes de vos formulaires et la logique de votre application dans l’éditeur C++.', 'L’éditeur C++ de Softi et les fichiers du projet MonApplication.'],
-      en: ['02 — C++', 'Write what makes it yours.', 'Work with your sources, form classes and application logic in the C++ editor.', 'The Softi C++ editor and the MonApplication project files.']
+      fr: ['02 — C++', 'Écrivez ce qui la rend unique.', 'Retrouvez les sources, les classes de vos formulaires et la logique de votre application dans l’éditeur C++.', 'L’éditeur C++ de Softi et les sources du projet VigilDefence.'],
+      en: ['02 — C++', 'Write what makes it yours.', 'Work with your sources, form classes and application logic in the C++ editor.', 'The Softi C++ editor and the VigilDefence project sources.']
+    },
+    git: {
+      fr: ['03 — GIT', 'Gardez chaque version.', 'Branches, historique, différences et commits, intégrés à l’application de bureau de Softi.', 'Le panneau Git de Softi avec l’historique et les branches du projet VigilDefence.'],
+      en: ['03 — GIT', 'Keep every version.', 'Branches, history, diffs and commits, built into the Softi desktop application.', 'The Softi Git panel with the history and branches of the VigilDefence project.']
     },
     installer: {
-      fr: ['03 — INSTALLATION', 'Préparez sa prochaine étape.', 'Configurez le produit et les fichiers à distribuer, puis générez un installeur Windows ou Linux.', 'La page Installeur de Softi et la configuration du produit.'],
-      en: ['03 — INSTALLATION', 'Prepare its next step.', 'Configure your product and its files, then build a Windows or Linux installer.', 'The Softi installer page with product configuration.']
+      fr: ['04 — INSTALLATION', 'Préparez sa prochaine étape.', 'Configurez le produit et les fichiers à distribuer, puis générez un installeur Windows ou Linux.', 'La page Installeur de Softi et la configuration du produit.'],
+      en: ['04 — INSTALLATION', 'Prepare its next step.', 'Configure your product and its files, then build a Windows or Linux installer.', 'The Softi installer page with product configuration.']
     },
     documentation: {
-      fr: ['04 — DOCUMENTATION', 'Gardez les réponses à portée de main.', 'Explorez les classes, les méthodes et les modules SwStack depuis la documentation intégrée.', 'La documentation SwStack intégrée à Softi.'],
-      en: ['04 — DOCUMENTATION', 'Keep the answers close.', 'Explore SwStack classes, methods and modules in the integrated documentation.', 'The SwStack documentation integrated into Softi.']
+      fr: ['05 — DOCUMENTATION', 'Gardez les réponses à portée de main.', 'Explorez les classes, les méthodes et les modules SwStack depuis la documentation intégrée.', 'La documentation SwStack intégrée à Softi.'],
+      en: ['05 — DOCUMENTATION', 'Keep the answers close.', 'Explore SwStack classes, methods and modules in the integrated documentation.', 'The SwStack documentation integrated into Softi.']
     }
   };
   let language = 'fr';

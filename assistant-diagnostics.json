@@ -1,12 +1,12 @@
 {
   "application": "SwCreator",
   "document": "SwCreatorWeb.html",
-  "release": "16b0e74028231361b78d",
+  "release": "210d17e97e4397889733",
   "assets": {
-    "SwCreatorWeb.js": "a21f91ba82aacd0820c99f10a0ecedc83f5375cdf37340dc819de8c8e2ad1269",
-    "SwCreatorWeb.wasm": "3da1e442c4cab2b456738e6c8450053d34a314a88ed589e477f0dfedf032b9b9",
-    "SwCreatorWeb.data": "aad2209e7f0d0ca9d03fd4cc4d6aa3fb2d0f2facf6795852301cf8bc52b23467",
-    "compiler/client.js": "29e6f067e03faf7d9d8b0ae3ea410232de08a13e5610761560442c46c021856f",
-    "runtime/index.html": "91d3c270fb85b366797812461ad5ab24a859cad44abbcae4209b5edc573c6ce8"
+    "SwCreatorWeb.js": "bf267f2babd5c0882024b8915a06dfbc8eec60cc170c9dbff7012de7a206f4c5",
+    "SwCreatorWeb.wasm": "e0000f4b2f6ee72749859589a503661999591bb79b8b3bfffcbddf8dfafa53c8",
+    "SwCreatorWeb.data": "9ed041e847992859bab42c7d36a96c05463d19a4b1af468afc13a305628bb730",
+    "compiler/client.js": "a2559ce44b7ff40f4c9f194cddeb607112546e5f72546790bc0f2ba75baabccf",
+    "runtime/index.html": "ce6cd851cbfe380d7d1567fdb892e9bf03eda5de3f96effdb11586475ddc095c"
   }
 }

@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-10-11T17:39:06.358627+00:00",
+  "generatedAt": "2026-10-12T08:38:06.883924+00:00",
   "softi": {
-    "commit": "352a8ceee18e5dd2f6276e5d2c02435f76c2dd1e",
+    "commit": "b3a4c83fc6f9e986afea460bf41073ec7e9dd077",
     "localChanges": true
   },
   "swstack": {
-    "commit": "27300a206ff1393091894d834989cbb177812cfd",
-    "localChanges": true
+    "commit": "95c78e62ccee6f0bbb8a4762d9304d90cc345caf",
+    "localChanges": false
   },
   "iaassistant": {
-    "commit": "ffeb0aea58dbb5e16bbadb95c0c9bfc02e6502e8",
+    "commit": "6f617b043a12b644560e62cf770843251fce8661",
     "localChanges": true
   },
   "files": {
@@ -43,11 +43,11 @@
     },
     "assistant-diagnostics.json": {
       "bytes": 600,
-      "sha256": "294387620b0bb982215c6fc6df8144ee900fe9bd31c62e39c30c91bcbe82663b"
+      "sha256": "3142dceaa9e5f6f024b7c08f6bc3fe2e10d9ad6fe3c8ac6bcc4d73e3ad0f13fa"
     },
     "compiler/client.js": {
-      "bytes": 16049,
-      "sha256": "29e6f067e03faf7d9d8b0ae3ea410232de08a13e5610761560442c46c021856f"
+      "bytes": 24464,
+      "sha256": "a2559ce44b7ff40f4c9f194cddeb607112546e5f72546790bc0f2ba75baabccf"
     },
     "compiler/installer.mjs": {
       "bytes": 22380,
@@ -214,8 +214,8 @@
       "sha256": "9f60dccd495ed39bba664a5912810fd3ae95a63e64995f725bc2df0f01d363ff"
     },
     "index.html": {
-      "bytes": 16970,
-      "sha256": "9d36b5c76bbd0d0a4a15308162128dab6804427d63058c2eb3da9f983c2223e5"
+      "bytes": 17274,
+      "sha256": "0f8c0bce38704d47c3f0ca818cf35b0ed9c0265d4a81da8a41ba02f4f6a5c60c"
     },
     "licenses/Emscripten-LICENSE.txt": {
       "bytes": 5093,
@@ -247,63 +247,67 @@
     },
     "runtime/index.html": {
       "bytes": 4469,
-      "sha256": "91d3c270fb85b366797812461ad5ab24a859cad44abbcae4209b5edc573c6ce8"
+      "sha256": "ce6cd851cbfe380d7d1567fdb892e9bf03eda5de3f96effdb11586475ddc095c"
     },
     "runtime/sdk-manifest.json": {
       "bytes": 5609,
-      "sha256": "06c53155415232ca797c756e20dd40395107f2374dbb79cbc32e4afc9137dbb9"
+      "sha256": "45ee064c9b66e23be780798bc33ca1a5341f1049c91df759a05f78d33ce736f1"
     },
     "runtime/sdk.tar.gz": {
-      "bytes": 11609891,
-      "sha256": "85362c1386d4c8d02442a4eb982592c53e276d16a12127ad6844e3380e923649"
+      "bytes": 11611259,
+      "sha256": "fb44f7e966decb686a7642a115280060f24f689b74ae515a2523f3966a0f74f7"
     },
     "runtime/SwCreatorWebRuntime.js": {
       "bytes": 6907390,
-      "sha256": "726d7442cc1ad44499e1d5b993a49d16f47de0140b6400fd4bae965083bb5617"
+      "sha256": "6a68d2ee725ca58b4130ccc432ecbafb545128079e78258b20d0be7701fc787e"
     },
     "runtime/SwCreatorWebRuntime.wasm": {
-      "bytes": 18555101,
-      "sha256": "c87cac5e5ed67a6c0c768b85475d9fdcf510a5fe7bd4781bd14bdbc975d9df58"
+      "bytes": 18563734,
+      "sha256": "999741cd0c02b91dd68e1f4113d538d3a12ef92d49f6bffebe100f6d422d6b44"
     },
     "showcase/assets/captures/code.png": {
-      "bytes": 301220,
-      "sha256": "6c31e1fca63fb69f994af1e9874647a23fa7bf8d54869a8c7ebaf0ef52d05af3"
+      "bytes": 350772,
+      "sha256": "c3611b9f28641a2467931ee9b22b34970d2d3fca9d98ac315a96d4ecb15a8aad"
     },
     "showcase/assets/captures/designer.png": {
-      "bytes": 170933,
-      "sha256": "177c8aa4b1733bd5351dac2c589ecbc800fa789fda104348d3d87cd83d8401db"
+      "bytes": 1002560,
+      "sha256": "17da073c82c9fa8a007ce0d8fdc8526853bb51cb3f88ece14f112fb1b7008b81"
     },
     "showcase/assets/captures/documentation.png": {
       "bytes": 228388,
       "sha256": "87ec06eea3124a6a3fc1e13bffb8303e1582249cdf6c1b41752840415eca7215"
+    },
+    "showcase/assets/captures/git.png": {
+      "bytes": 385551,
+      "sha256": "8d3815351d0f0e49d47bd6c13449a81fd51e64f432c08bdeb54a3c994c5517ff"
     },
     "showcase/assets/captures/installer.png": {
       "bytes": 175489,
       "sha256": "f05a4ef36217d1e0da0be15e3f0b72b73f0d96095815dfd712dd1f25d391f35f"
     },
     "showcase/showcase.js": {
-      "bytes": 9067,
-      "sha256": "823e447a7f4ce69d8b9bf7a1f9427d72c540282e7aa5cdeac2c3e09da8b12fb5"
+      "bytes": 9689,
+      "sha256": "7b194510d30afab37ef39bf3dd5cd818b2bfeee490fb69d8f5d660a07c5aa0ae"
     },
     "showcase/style.css": {
       "bytes": 12393,
       "sha256": "2bce200c24e602ffe479f22d0c08b30dca1e9d90e9e2a71a6ebc9c6ed37aac7b"
     },
     "SwCreatorWeb.data": {
-      "bytes": 33758212,
-      "sha256": "aad2209e7f0d0ca9d03fd4cc4d6aa3fb2d0f2facf6795852301cf8bc52b23467"
+      "bytes": 33759310,
+      "sha256": "9ed041e847992859bab42c7d36a96c05463d19a4b1af468afc13a305628bb730"
     },
     "SwCreatorWeb.html": {
-      "bytes": 14496,
-      "sha256": "c53d2063caaf5f4ea4c31c3de31a511aab8588befca0de332de368a71ada8e41"
+      "bytes": 15650,
+      "sha256": "5df038be2f5dbf62713e94f8c056a6109ebe93bec40e9071f947958f790af79e"
     },
     "SwCreatorWeb.js": {
-      "bytes": 443676,
-      "sha256": "a21f91ba82aacd0820c99f10a0ecedc83f5375cdf37340dc819de8c8e2ad1269"
+      "bytes": 443783,
+      "sha256": "bf267f2babd5c0882024b8915a06dfbc8eec60cc170c9dbff7012de7a206f4c5"
     },
     "SwCreatorWeb.wasm": {
-      "bytes": 18392368,
-      "sha256": "3da1e442c4cab2b456738e6c8450053d34a314a88ed589e477f0dfedf032b9b9"
+      "bytes": 18414133,
+      "sha256": "e0000f4b2f6ee72749859589a503661999591bb79b8b3bfffcbddf8dfafa53c8"
     }
   }
 }
