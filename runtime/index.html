@@ -13,11 +13,13 @@ body.core #status { display:block; color:inherit; background:transparent; border
 </style>
 <div id="status">Loading application runtime…</div>
 <pre id="output" hidden></pre>
-<script src="SwCreatorWebRuntime.js"></script>
+<script id="runtime-assets" type="application/json">{"SwCreatorWebRuntime.js": "726d7442cc1ad44499e1d5b993a49d16f47de0140b6400fd4bae965083bb5617", "SwCreatorWebRuntime.wasm": "c87cac5e5ed67a6c0c768b85475d9fdcf510a5fe7bd4781bd14bdbc975d9df58"}</script>
+<script src="SwCreatorWebRuntime.js?v=726d7442cc1ad44499e1d5b993a49d16f47de0140b6400fd4bae965083bb5617"></script>
 <script>
 (() => {
   const status = document.getElementById('status');
   const output = document.getElementById('output');
+  const assets = JSON.parse(document.getElementById('runtime-assets').textContent);
   const reply = (message) => parent.postMessage(message, location.origin);
   let generation = 0;
   let core = false;
@@ -26,7 +28,12 @@ body.core #status { display:block; color:inherit; background:transparent; border
     reply({ type: 'swcreator:preview-output', text, stream });
   };
   const runtime = SwCreatorRuntime({
-    locateFile: (name) => new URL(name, location.href).href,
+    swStackFloatingWindows: true,
+    locateFile: (name) => {
+      const url = new URL(name, location.href);
+      if (assets[name]) url.searchParams.set('v', assets[name]);
+      return url.href;
+    },
     print: (text) => print(text, 'stdout'),
     printErr: (text) => print(text, 'stderr')
   }).then((module) => {

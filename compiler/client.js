@@ -229,9 +229,10 @@
         preview.className = 'swcreator-preview-frame';
         preview.swCreatorBuildId = result.buildId;
         // Program execution occurs in a dedicated runtime; console programs use a stoppable worker.
-        preview.src = sideModule
-            ? new URL('../runtime/index.html', scriptBase).href
-            : new URL('runner.html', scriptBase).href;
+        const previewUrl = new URL(sideModule ? '../runtime/index.html' : 'runner.html', scriptBase);
+        const runtimeVersion = window.softiDeployment?.assets['runtime/index.html'];
+        if (sideModule && runtimeVersion) previewUrl.searchParams.set('v', runtimeVersion);
+        preview.src = previewUrl.href;
         container.hidden = false;
         const frame = preview;
         const loaded = new Promise((resolve, reject) => {
@@ -274,6 +275,10 @@
                     if (source !== frame.contentWindow || origin !== location.origin || !data || data.type !== 'swcreator:preview-result' || data.id !== id) return;
                     clear();
                     if (data.ok) {
+                        // Once the application's own frame is ready, its cross
+                        // owns closing. Keep the host button as a loading fallback.
+                        container.classList.toggle('swcreator-window-preview', gui &&
+                            !frame.contentDocument?.querySelector('[data-swstack-frame]'));
                         resolve();
                     }
                     else reject(new Error(data.error || 'Unable to start the application.'));
