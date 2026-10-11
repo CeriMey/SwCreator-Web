@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T21:21:36.890375+00:00",
+  "generatedAt": "2026-10-11T06:22:03.809228+00:00",
   "softi": {
     "commit": "9389e81f9893ece91c4b5cc3511c8246435cf91a",
     "localChanges": true
@@ -43,7 +43,7 @@
     },
     "assistant-diagnostics.json": {
       "bytes": 505,
-      "sha256": "50bbd73fdead1ef2e0072e3c18877b3b16e7b0ac159256791ec6168f5d710fbf"
+      "sha256": "3715e698e87a2755ce2819c440195fce6e29a496ed5f63e245d0ab995576fa2e"
     },
     "compiler/client.js": {
       "bytes": 14962,
@@ -201,6 +201,18 @@
       "bytes": 903,
       "sha256": "192d286b74352ea8a86ba7b69c1facab9bc3191e940aebde5ab697a033126ca4"
     },
+    "extensions/IaAssistant-chromium.zip": {
+      "bytes": 19547,
+      "sha256": "888a0e2847cad633d6b803f4fdbd5d559d06575ff8796a2b0e1a6cf9e8bea2dd"
+    },
+    "extensions/IaAssistant-firefox.zip": {
+      "bytes": 19612,
+      "sha256": "ca3b7b5ee1901595773a0f1cc838a86cc048930c49655d2889ee747cab2ab3a6"
+    },
+    "extensions/IaAssistant-safari.zip": {
+      "bytes": 19537,
+      "sha256": "c4c3609dfcee34d6b6c62f624acf12acde1b5a1ed1e78694e2fcbc51a71047a3"
+    },
     "index.html": {
       "bytes": 16970,
       "sha256": "9d36b5c76bbd0d0a4a15308162128dab6804427d63058c2eb3da9f983c2223e5"
@@ -283,11 +295,11 @@
     },
     "SwCreatorWeb.html": {
       "bytes": 14311,
-      "sha256": "ed6a8764ee560ab329835f1a90bb1e394b97173bdc068998deca71901c76fb45"
+      "sha256": "28bc1f3a68edd29b99d3ede4da083ee081aa38637a26a3700335db1723927ba4"
     },
     "SwCreatorWeb.js": {
-      "bytes": 299978,
-      "sha256": "8a40f2890a94b8ff1c8672a7bd12423b670cbe9199749f9ec981d0ae612455f5"
+      "bytes": 301513,
+      "sha256": "290dba1195c43b273447c082f89f7255be860386e9178eb349c5565cc01f1f21"
     },
     "SwCreatorWeb.wasm": {
       "bytes": 17065451,
