@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T06:22:03.809228+00:00",
+  "generatedAt": "2026-10-11T06:44:17.517645+00:00",
   "softi": {
     "commit": "9389e81f9893ece91c4b5cc3511c8246435cf91a",
     "localChanges": true
@@ -42,8 +42,8 @@
       "sha256": "a324ae51cc34ac92da0a44ebde20c106752c101ab88b8d85235b5088e3423bf5"
     },
     "assistant-diagnostics.json": {
-      "bytes": 505,
-      "sha256": "3715e698e87a2755ce2819c440195fce6e29a496ed5f63e245d0ab995576fa2e"
+      "bytes": 494,
+      "sha256": "2189d433c2be9490edc5c3cac7bc0f21e0d72f7f46ab9fc819a971453ae92aed"
     },
     "compiler/client.js": {
       "bytes": 14962,
@@ -202,16 +202,16 @@
       "sha256": "192d286b74352ea8a86ba7b69c1facab9bc3191e940aebde5ab697a033126ca4"
     },
     "extensions/IaAssistant-chromium.zip": {
-      "bytes": 19547,
-      "sha256": "888a0e2847cad633d6b803f4fdbd5d559d06575ff8796a2b0e1a6cf9e8bea2dd"
+      "bytes": 43519,
+      "sha256": "6e7b4c85a88c19a791360c9eff5d3dbe050ac25dfed8af5e1b19f53c7ad33586"
     },
     "extensions/IaAssistant-firefox.zip": {
-      "bytes": 19612,
-      "sha256": "ca3b7b5ee1901595773a0f1cc838a86cc048930c49655d2889ee747cab2ab3a6"
+      "bytes": 43574,
+      "sha256": "2b8f9c3b1bb8ac193f52cbfe83cca51e35d5e7a5d7eb7addadfc6f37f33daab9"
     },
     "extensions/IaAssistant-safari.zip": {
-      "bytes": 19537,
-      "sha256": "c4c3609dfcee34d6b6c62f624acf12acde1b5a1ed1e78694e2fcbc51a71047a3"
+      "bytes": 43508,
+      "sha256": "4def45aeb9795e187e25f4c54367209f6428568765f0d2184663a1cf34481356"
     },
     "index.html": {
       "bytes": 16970,
@@ -294,12 +294,12 @@
       "sha256": "81939d6e1f55b36c2919bbddf140adf6cc920024425a27993452b7d04f9fe723"
     },
     "SwCreatorWeb.html": {
-      "bytes": 14311,
-      "sha256": "28bc1f3a68edd29b99d3ede4da083ee081aa38637a26a3700335db1723927ba4"
+      "bytes": 14290,
+      "sha256": "846bcf8fd790ceb3d120161532f9e8378f63ec6ba54e3a8716545d2ed3e6839c"
     },
     "SwCreatorWeb.js": {
-      "bytes": 301513,
-      "sha256": "290dba1195c43b273447c082f89f7255be860386e9178eb349c5565cc01f1f21"
+      "bytes": 397384,
+      "sha256": "d0b78802f5e331687cb04c17b51a46d8dedab6e4303e0b3df82a50c46c4e97c5"
     },
     "SwCreatorWeb.wasm": {
       "bytes": 17065451,
