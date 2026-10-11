@@ -191,6 +191,14 @@
         } else module.canvas?.focus();
     };
 
+    function closePreviewOnEscape(event) {
+        if (!preview || event.key !== 'Escape' || event.isComposing) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        module.swCreatorClosePreview();
+    }
+    window.addEventListener('keydown', closePreviewOnEscape, true);
+
     window.addEventListener('message', ({source, origin, data}) => {
         if (!preview || source !== preview.contentWindow || origin !== location.origin || !data) return;
         if (data.type === 'swcreator:preview-closed') { module.swCreatorClosePreview(); return; }
@@ -206,7 +214,9 @@
         const core = sideModule && result.projectProfile === 'core';
         const gui = sideModule && !core;
         container.classList.toggle('swcreator-gui-preview', gui);
-        container.classList.remove('swcreator-window-preview');
+        // Keep a host-owned close control available even while the runtime is
+        // loading or the application's own window has no caption buttons.
+        container.classList.toggle('swcreator-window-preview', gui);
         if (gui) {
             const element = module.canvas?.closest('[role="application"]');
             if (element) {
@@ -231,7 +241,13 @@
                 frame.removeEventListener('error', onError);
                 cancelPreviewWait = null;
             };
-            const onLoad = () => { clear(); resolve(true); };
+            const onLoad = () => {
+                // Keyboard events do not cross iframe boundaries. Capture in
+                // the runtime too, before a main window consumes Escape.
+                frame.contentWindow.addEventListener('keydown', closePreviewOnEscape, true);
+                clear();
+                resolve(true);
+            };
             const onError = () => { clear(); reject(new Error('Unable to load the preview.')); };
             const timeout = setTimeout(() => { clear(); reject(new Error('The preview did not load.')); }, 30000);
             cancelPreviewWait = () => { clear(); resolve(false); };
@@ -258,8 +274,6 @@
                     if (source !== frame.contentWindow || origin !== location.origin || !data || data.type !== 'swcreator:preview-result' || data.id !== id) return;
                     clear();
                     if (data.ok) {
-                        container.classList.toggle('swcreator-window-preview', gui &&
-                            !!frame.contentDocument?.querySelector('.swstack-web-window[role="application"]'));
                         resolve();
                     }
                     else reject(new Error(data.error || 'Unable to start the application.'));

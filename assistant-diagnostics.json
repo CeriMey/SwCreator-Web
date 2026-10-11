@@ -1,11 +1,11 @@
 {
   "application": "SwCreator",
   "document": "SwCreatorWeb.html",
-  "release": "8300340b2e810f11d08f",
+  "release": "4fc3167ea96cceb8abd3",
   "assets": {
     "SwCreatorWeb.js": "32f1929fb4d38b495dd73256ac8770ab7eaa64ea0d46cb9f8fba29a4778250ba",
     "SwCreatorWeb.wasm": "df38571fb3cda583465dc13c575d92872cd909fe4bebefa0335e56ac289c2ab6",
     "SwCreatorWeb.data": "1beb592f28f5e15358f963af27e783086284074c2afd65ed22e3a2f23bdc90cd",
-    "compiler/client.js": "76ce097187d890eb027911ccf8e3d920bcc1e5e52e879986eb36cdbad65508bd"
+    "compiler/client.js": "d037ff9ccc70badbf7fbdf8c1ca27c43c24d2043a4fd41e9ff2ef4e7cdca80cb"
   }
 }
