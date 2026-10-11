@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T06:44:17.517645+00:00",
+  "generatedAt": "2026-10-11T07:03:06.967802+00:00",
   "softi": {
     "commit": "9389e81f9893ece91c4b5cc3511c8246435cf91a",
     "localChanges": true
@@ -43,7 +43,7 @@
     },
     "assistant-diagnostics.json": {
       "bytes": 494,
-      "sha256": "2189d433c2be9490edc5c3cac7bc0f21e0d72f7f46ab9fc819a971453ae92aed"
+      "sha256": "719c57a9d161756d9814e03c66f28c351ab0085871878dde5fe511dd85ccc643"
     },
     "compiler/client.js": {
       "bytes": 14962,
@@ -294,12 +294,12 @@
       "sha256": "81939d6e1f55b36c2919bbddf140adf6cc920024425a27993452b7d04f9fe723"
     },
     "SwCreatorWeb.html": {
-      "bytes": 14290,
-      "sha256": "846bcf8fd790ceb3d120161532f9e8378f63ec6ba54e3a8716545d2ed3e6839c"
+      "bytes": 14357,
+      "sha256": "3a08dcd96784039de63661c4575fd3a30a9dadf6b0c5f1fbfc84d2cdab18b10c"
     },
     "SwCreatorWeb.js": {
-      "bytes": 397384,
-      "sha256": "d0b78802f5e331687cb04c17b51a46d8dedab6e4303e0b3df82a50c46c4e97c5"
+      "bytes": 453492,
+      "sha256": "7aaa61fb07dc79d0579c0cc445b80cdaa592d00c63a8cb5bcaa23af45c6c6449"
     },
     "SwCreatorWeb.wasm": {
       "bytes": 17065451,

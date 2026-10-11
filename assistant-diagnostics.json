@@ -1,9 +1,9 @@
 {
   "application": "SwCreator",
   "document": "SwCreatorWeb.html",
-  "release": "9d6195d3ebd4e434060f",
+  "release": "15772a55b1a4d5d8b999",
   "assets": {
-    "SwCreatorWeb.js": "d0b78802f5e331687cb04c17b51a46d8dedab6e4303e0b3df82a50c46c4e97c5",
+    "SwCreatorWeb.js": "7aaa61fb07dc79d0579c0cc445b80cdaa592d00c63a8cb5bcaa23af45c6c6449",
     "SwCreatorWeb.wasm": "18d301ed2752723c30afbb2b458b297bef0162380f877b4d59d3da4c2b55d1a0",
     "SwCreatorWeb.data": "81939d6e1f55b36c2919bbddf140adf6cc920024425a27993452b7d04f9fe723",
     "compiler/client.js": "76ce097187d890eb027911ccf8e3d920bcc1e5e52e879986eb36cdbad65508bd"
