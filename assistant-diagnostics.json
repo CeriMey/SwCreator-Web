@@ -1,13 +1,13 @@
 {
   "application": "SwCreator",
   "document": "SwCreatorWeb.html",
-  "release": "3786ba9021a94230841b",
+  "release": "6d01806877f9abb5c104",
   "assets": {
-    "SwCreatorWeb.js": "3779bc3340fbfa5e09f51d86d9cbff48ca6827a5dd8feebf7d5fd273bd120c12",
-    "SwCreatorWeb.wasm": "6f9f9319c7c0b6ef85911d0a9e2e0bea18af7052f824a9feef8b18a2a8c52662",
-    "SwCreatorWeb.data": "c7c1a084abb0ae8ccb8eb18a2b6b21d9625e08d7c6fb2a317122cba5d2565891",
+    "SwCreatorWeb.js": "5d8f63825a6bb0bcdc2f380fa328bbab6444603a2714adf7952759d715eac12d",
+    "SwCreatorWeb.wasm": "662bcabbd105fae220fdd384fd2471fcdfd764b8d161f0cd20af52f33d4fed3e",
+    "SwCreatorWeb.data": "134f9d5237af27ff416549e6b98b29089dbeb67f7f9eec92e180c7039a378116",
     "compiler/client.js": "d29a8ad358e4b2884d50fb31d72f98d7524ca0132facee4d7e661ef3c9e5d691",
-    "runtime/index.html": "bd05c82a22fb963289f7f8f6e217e32c70d5881c978f9962e55652e3e5500330"
+    "runtime/index.html": "a6923afc185d8d92b0ebc4c6baedeaacd8d82a21d39a4689dc6f6ad243f8f726"
   },
-  "networkExtensionVersion": "0.2.0"
+  "networkExtensionVersion": "0.2.1"
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T16:24:38.066657+00:00",
+  "generatedAt": "2026-10-12T17:34:36.994852+00:00",
   "softi": {
     "commit": "b3a4c83fc6f9e986afea460bf41073ec7e9dd077",
     "localChanges": true
@@ -38,8 +38,8 @@
       "sha256": "58fab3fa04735b06fb016e11c1b7e316f892f73f5472de96edf926fffa8f6527"
     },
     "assistant-diagnostics.html": {
-      "bytes": 1576,
-      "sha256": "d74e21c2abc31dcd634f7da6860706fac47714d3a7756ddffcf0731e0d8612a5"
+      "bytes": 1570,
+      "sha256": "7d0e06a893c3410bcb1ea6260ac682e2bec666f8e93853fcabbe2ecaf919ea52"
     },
     "assistant-diagnostics.js": {
       "bytes": 3202,
@@ -47,7 +47,23 @@
     },
     "assistant-diagnostics.json": {
       "bytes": 639,
-      "sha256": "8def3ef1e0961df4479974145ba2161fe8b3731f7189abbeec202a319618cbdb"
+      "sha256": "5ba7f84954fdc0eaf82c9a704ba94c0cc281b4fec53ff2bd7c7a07b6f9d2c494"
+    },
+    "compiler/assets/web-proxy/ariya-black.svg": {
+      "bytes": 11834,
+      "sha256": "75fd74e6575ea9e5df03c5d420b78362d752b6615fc2320e4612239f04487243"
+    },
+    "compiler/assets/web-proxy/ariya-white.svg": {
+      "bytes": 11834,
+      "sha256": "4517caa4d3ddfec7319e6ef28e521e6eb9c4476dd7263236fa7efd8d206cdc45"
+    },
+    "compiler/assets/web-proxy/proxy.svg": {
+      "bytes": 427,
+      "sha256": "2b35d83cd072527570e237709266900215aeec9f1fb5d92aac0861132af35ce4"
+    },
+    "compiler/assets/web-proxy/README.md": {
+      "bytes": 396,
+      "sha256": "a173f308921ab211f3297040f747020b5e80cae3ada57c7f1bf23415d7885aea"
     },
     "compiler/client.js": {
       "bytes": 24341,
@@ -58,8 +74,8 @@
       "sha256": "a0abd8a1f57f5f2596bfbe67adf03fee2e7309cd81c62e3f3f41f6a1e0863f3a"
     },
     "compiler/network-bridge-ui.js": {
-      "bytes": 15374,
-      "sha256": "516b81cdfee747251ce01be3a7af8a94377241bf53c16ebec55dba2fc90695cb"
+      "bytes": 24429,
+      "sha256": "81a6f59113dd0ee0d20d852af9dae2b0f12fb309f52990b3b182b688ed0e26d8"
     },
     "compiler/run-worker.mjs": {
       "bytes": 1078,
@@ -210,20 +226,36 @@
       "sha256": "192d286b74352ea8a86ba7b69c1facab9bc3191e940aebde5ab697a033126ca4"
     },
     "extensions/iaassistant-network-ui.js": {
-      "bytes": 2877,
-      "sha256": "16d0c4d9e5acd5fbe1e388ff3e07ea398cd9d1d941f48c8ef9cd8d0ca762b1fd"
+      "bytes": 8500,
+      "sha256": "7424ef67c4b1ff697e23cda51caba0a52d59f444a9e2cc2bf45aef6849c17549"
     },
     "extensions/swstack-network-browser.pre.js": {
-      "bytes": 56111,
-      "sha256": "bea7f5e16f9e987037c1206998cda75e8369cda4c14cc0e090acaa205efc3100"
+      "bytes": 114691,
+      "sha256": "18d34bd07089080a6b790e91fd7def12c5d75437d5d1f71b60f502826732740c"
     },
-    "extensions/SwStack-Network-chromium.zip": {
-      "bytes": 16164,
-      "sha256": "2fe7709cdc97ea6bfad346eea735c6cee4df4dad06854569fde7d8a1527f985e"
+    "extensions/web-proxy/ariya-black.svg": {
+      "bytes": 11834,
+      "sha256": "75fd74e6575ea9e5df03c5d420b78362d752b6615fc2320e4612239f04487243"
     },
-    "extensions/SwStack-Network-firefox.zip": {
-      "bytes": 16265,
-      "sha256": "a070a4f569c0532272c87b5933a4a4eead0e0165239b85027656bdcb81e41d9e"
+    "extensions/web-proxy/ariya-white.svg": {
+      "bytes": 11834,
+      "sha256": "4517caa4d3ddfec7319e6ef28e521e6eb9c4476dd7263236fa7efd8d206cdc45"
+    },
+    "extensions/web-proxy/installer.css": {
+      "bytes": 4952,
+      "sha256": "dced55270b6d4397321835f0926360f8f39d2fa1121bcb93528b318336c1c3c6"
+    },
+    "extensions/web-proxy/proxy.svg": {
+      "bytes": 427,
+      "sha256": "2b35d83cd072527570e237709266900215aeec9f1fb5d92aac0861132af35ce4"
+    },
+    "extensions/Web-Proxy-chromium.zip": {
+      "bytes": 37863,
+      "sha256": "0e488aebae0a12b0fc58d5a4df5648f623f13a90ad37e72ee9e3842b412158a4"
+    },
+    "extensions/Web-Proxy-firefox.zip": {
+      "bytes": 37962,
+      "sha256": "025fa44c207263f108ee50473552b291e3e8a94962f7a6001bb1fc9f21ce0e7e"
     },
     "index.html": {
       "bytes": 17274,
@@ -267,23 +299,23 @@
     },
     "runtime/index.html": {
       "bytes": 4469,
-      "sha256": "bd05c82a22fb963289f7f8f6e217e32c70d5881c978f9962e55652e3e5500330"
+      "sha256": "a6923afc185d8d92b0ebc4c6baedeaacd8d82a21d39a4689dc6f6ad243f8f726"
     },
     "runtime/sdk-manifest.json": {
       "bytes": 5609,
-      "sha256": "8e91130b97d3d9ed03684976c19b6ba99b3dfa24bbed816b79b43292f121158f"
+      "sha256": "8af9cad7ccdec2f9875337d05942f59f284ebeebcde3f5003b95e193801f6af5"
     },
     "runtime/sdk.tar.gz": {
-      "bytes": 11615566,
-      "sha256": "10bd749ddfac83f8bcc6b28a6c12be516b056a49a507f9be70a7cd6b3479e98e"
+      "bytes": 11615579,
+      "sha256": "99a63e920826d0bbcf1ee1e82a255a254b3dd65af023a4320f51277ff0de284a"
     },
     "runtime/SwCreatorWebRuntime.js": {
-      "bytes": 6766832,
-      "sha256": "a9d837a679d73eaa584bac71892d6d94d37771ae6c473af8c88aa9a1fe117e92"
+      "bytes": 6829516,
+      "sha256": "d4a652fb8183d9a84001497c6da6d301ab0e8bf104750f6bf41c567765a10145"
     },
     "runtime/SwCreatorWebRuntime.wasm": {
-      "bytes": 18962028,
-      "sha256": "6e03add1b1587f3e4a74f0ff10e9b548a7e41aedc9ab018639f39059cd4c9595"
+      "bytes": 18979907,
+      "sha256": "97ae9981302fd731aea64011d0fc661d4b42310a189cf98af6809f887d6524bb"
     },
     "showcase/assets/captures/code.png": {
       "bytes": 350772,
@@ -314,20 +346,20 @@
       "sha256": "2bce200c24e602ffe479f22d0c08b30dca1e9d90e9e2a71a6ebc9c6ed37aac7b"
     },
     "SwCreatorWeb.data": {
-      "bytes": 33749490,
-      "sha256": "c7c1a084abb0ae8ccb8eb18a2b6b21d9625e08d7c6fb2a317122cba5d2565891"
+      "bytes": 33762390,
+      "sha256": "134f9d5237af27ff416549e6b98b29089dbeb67f7f9eec92e180c7039a378116"
     },
     "SwCreatorWeb.html": {
-      "bytes": 14740,
-      "sha256": "1071f42ef70c8ae5a14222904557096f51e6ce145807e47a6d5d4e15f853ea3c"
+      "bytes": 14734,
+      "sha256": "809958be60126b51ee71632404a1611b17caf5dcc568c52a9316adeaf817600d"
     },
     "SwCreatorWeb.js": {
-      "bytes": 277241,
-      "sha256": "3779bc3340fbfa5e09f51d86d9cbff48ca6827a5dd8feebf7d5fd273bd120c12"
+      "bytes": 350377,
+      "sha256": "5d8f63825a6bb0bcdc2f380fa328bbab6444603a2714adf7952759d715eac12d"
     },
     "SwCreatorWeb.wasm": {
-      "bytes": 20167770,
-      "sha256": "6f9f9319c7c0b6ef85911d0a9e2e0bea18af7052f824a9feef8b18a2a8c52662"
+      "bytes": 30166563,
+      "sha256": "662bcabbd105fae220fdd384fd2471fcdfd764b8d161f0cd20af52f33d4fed3e"
     }
   }
 }
