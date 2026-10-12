@@ -1,4 +1,4 @@
-This application includes IaAssistant, licensed from Ariya Consulting.
+This application includes IaAssistant and SwGit, licensed from Ariya Consulting.
 Copyright (c) 2025-2026 Ariya Consulting. All rights reserved.
 IaAssistant may be used only as part of this application and may not be
 redistributed separately. Separately licensed components retain their

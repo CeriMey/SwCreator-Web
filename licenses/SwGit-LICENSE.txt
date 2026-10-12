@@ -1,0 +1,19 @@
+SwGit Commercial License
+Copyright (c) 2026 Ariya Consulting. All rights reserved.
+
+SwGit is proprietary commercial software. No license is granted by possession
+of this source code or access to its repository. Use, reproduction, modification,
+distribution, sublicensing, and incorporation into another product require a
+separate written commercial license from Ariya Consulting.
+
+An authorized licensee may use the software only within the scope and duration
+of its written agreement with Ariya Consulting. All rights not expressly granted
+in that agreement are reserved.
+
+The software is provided "AS IS", without warranties of any kind, except where
+expressly agreed in writing or required by applicable law. To the extent allowed
+by applicable law, Ariya Consulting is not liable for indirect, incidental,
+special, or consequential damages arising from use of the software.
+
+Third-party components are not relicensed by this document. SwStack and its
+third-party components remain subject to their respective licenses and notices.

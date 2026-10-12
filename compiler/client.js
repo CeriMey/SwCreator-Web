@@ -85,6 +85,13 @@
         return module.UTF8ToString(pointer) || fallback;
     }
 
+    function prepareImport(path, content, project) {
+        return new Promise(resolve => {
+            module.swCreatorImportDecision = resolve;
+            module.ccall('swcreator_web_prepare_import', null, ['string', 'string', 'number'], [path, content, project ? 1 : 0]);
+        });
+    }
+
     // A file selection grants access only to that file. Ask for the containing
     // directory as well, using a real DOM click so browser user activation is
     // preserved even though the C++ workbench dispatches input asynchronously.
@@ -145,7 +152,7 @@
                     throw new Error(tr('Ce dossier ne contient pas le CMakeLists.txt sélectionné. Choisissez son dossier parent.',
                         'This folder does not contain the selected CMakeLists.txt. Choose its containing folder.'));
                 const kept = candidates.filter(({path}) => !path.split('/').slice(0, -1).some(part =>
-                    part === '.git' || part === '.swcreator' || part === 'node_modules' || /^(?:build|cmake-build)(?:$|[-_])/i.test(part)));
+                    part === '.swcreator' || part === 'node_modules' || /^(?:build|cmake-build)(?:$|[-_])/i.test(part)));
                 if (kept.length > 10000 || kept.reduce((size, {file}) => size + file.size, 0) > 256 * 1024 * 1024)
                     throw new Error(tr('Le dépôt dépasse 10 000 fichiers ou 256 Mio.', 'The repository exceeds 10,000 files or 256 MiB.'));
                 const snapshot = {version:1, format:'cmake', name:root, files:[]};
@@ -173,10 +180,7 @@
                 // Shared Save/Discard/Cancel dialogs must be reachable while
                 // deciding whether to leave the current project.
                 closeDialog();
-                const accepted = await new Promise(resolve => {
-                    module.swCreatorImportDecision = resolve;
-                    module.ccall('swcreator_web_prepare_import', null, ['string', 'string', 'number'], ['CMakeLists.txt', json, 1]);
-                });
+                const accepted = await prepareImport('CMakeLists.txt', json, true);
                 if (!accepted) return;
                 if (!module.ccall('swcreator_web_import_project', 'number', ['string'], [json]))
                     throw new Error(lastError(tr('Import du projet impossible.', 'Unable to import the project.')));
@@ -218,10 +222,7 @@
                 if (/\.json$/i.test(file.name)) {
                     try { snapshot = Array.isArray(JSON.parse(text).files); } catch {}
                 }
-                const accepted = await new Promise(resolve => {
-                    module.swCreatorImportDecision = resolve;
-                    module.ccall('swcreator_web_prepare_import', null, ['string', 'string', 'number'], [file.name, text, snapshot ? 1 : 0]);
-                });
+                const accepted = await prepareImport(file.name, text, snapshot);
                 if (!accepted) {
                     const diagnostic = lastError('');
                     if (diagnostic) reportError(new Error(diagnostic));
